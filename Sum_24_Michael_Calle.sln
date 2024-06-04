@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sum_24_Michael_Calle", "Sum_24_Michael_Calle\Sum_24_Michael_Calle.vcxproj", "{944AC25B-3384-426B-ADC7-CC5B1135F358}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Orca", "Orca\Orca.vcxproj", "{A39B51DE-00E7-48E5-8DAD-06BBBC2209AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{944AC25B-3384-426B-ADC7-CC5B1135F358}.Debug|x64.ActiveCfg = Debug|x64
+		{944AC25B-3384-426B-ADC7-CC5B1135F358}.Debug|x64.Build.0 = Debug|x64
+		{944AC25B-3384-426B-ADC7-CC5B1135F358}.Release|x64.ActiveCfg = Release|x64
+		{944AC25B-3384-426B-ADC7-CC5B1135F358}.Release|x64.Build.0 = Release|x64
+		{A39B51DE-00E7-48E5-8DAD-06BBBC2209AA}.Debug|x64.ActiveCfg = Debug|x64
+		{A39B51DE-00E7-48E5-8DAD-06BBBC2209AA}.Debug|x64.Build.0 = Debug|x64
+		{A39B51DE-00E7-48E5-8DAD-06BBBC2209AA}.Release|x64.ActiveCfg = Release|x64
+		{A39B51DE-00E7-48E5-8DAD-06BBBC2209AA}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A8CF532-0184-4AE6-AC35-BCB0178278BC}
+	EndGlobalSection
+EndGlobal
