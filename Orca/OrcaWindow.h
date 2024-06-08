@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "Utilities.h"
+#include "WindowImplementation.h"
 
 namespace Orca
 {
