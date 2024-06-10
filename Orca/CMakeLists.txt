@@ -21,6 +21,7 @@ target_compile_definitions(Orca
 		$<$<CONFIG:RelWithDebInfo>:ORCA_DEBUG=1>
 	PRIVATE
 		ORCA_LIB
+		ORCA_GLFW
 )
 
 if(MSVC)
