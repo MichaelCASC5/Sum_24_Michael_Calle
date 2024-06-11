@@ -18,7 +18,8 @@ namespace Orca
 	{
 		if (!mInstance)
 		{
-			mInstance = std::make_shared<OrcaWindow>(new OrcaWindow);
+			// OrcaWindow is a singleton, which is why we use (new OrcaWindow)
+			mInstance = std::shared_ptr<OrcaWindow>(new OrcaWindow);
 		}
 	}
 
@@ -49,11 +50,11 @@ namespace Orca
 
 	void OrcaWindow::SwapBuffers()
 	{
-		mImplementation
+		mImplementation->SwapBuffers();
 	}
 
 	void OrcaWindow::PollEvents()
 	{
-		mImplementation->PollEvents
+		mImplementation->PollEvents();
 	}
 }
