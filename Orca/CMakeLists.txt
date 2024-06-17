@@ -22,6 +22,7 @@ target_compile_definitions(Orca
 	PRIVATE
 		ORCA_LIB
 		ORCA_GLFW
+		ORCA_OPENGL
 )
 
 if(MSVC)
@@ -30,7 +31,8 @@ endif()
 
 target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/Orca)
 target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/glfw/include)
+target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/glad/include)
 
-target_link_libraries(Orca glfw)
+target_link_libraries(Orca glfw glad stbi)
 
 target_precompile_headers(Orca PRIVATE pch.h)

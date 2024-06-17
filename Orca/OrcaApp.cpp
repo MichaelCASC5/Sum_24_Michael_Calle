@@ -22,6 +22,9 @@ namespace Orca
 			ORCA_ERROR("ERROR: Failed to initialize GLAD")
 		}
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		//// VERTEX DATA ////
 
 		float vertices[] = {
@@ -62,18 +65,27 @@ namespace Orca
 		const char* vertexShaderSource = R"(
 			#version 330 core
 			layout (location = 0) in vec2 aPos;
+			layout (location = 1) in vec2 aTexCoord;
+
+			out vec2 TexCoord;
+
 			void main()
 			{
 				gl_Position = vec4(aPos.x, aPos.y, 0, 1.0);
+				TexCoord = aTexCoord;
 			}
 		)";
 
 		const char* fragmentShaderSource = R"(
 			#version 330 core
 			out vec4 FragColor;
+
+			in vec2 TexCoord;
+			uniform sampler2D image;
+
 			void main()
 			{
-				FragColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);
+				FragColor = texture(image, TexCoord);
 			}
 		)";
 
@@ -131,6 +143,7 @@ namespace Orca
 
 		int width, height, nrChannels;
 		unsigned char* data = stbi_load("../Table/Assets/Images/Sun.png", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load("../Orca/Assets/Images/Sun.png", &width, &height, &nrChannels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -146,6 +159,9 @@ namespace Orca
 		{
 			//Game is stuck in this while loop
 			OnUpdate();
+
+			glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized

@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
+add_subdirectory(stbi)
+add_subdirectory(glad)
 add_subdirectory(glfw)
 add_subdirectory(Orca)
 add_subdirectory(Sum_24_Michael_Calle)

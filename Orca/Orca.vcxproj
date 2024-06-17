@@ -107,7 +107,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;$(SolutionDir)stbi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,7 +125,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;$(SolutionDir)stbi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Image.h" />
     <ClInclude Include="OrcaWindow.h" />
     <ClInclude Include="include\Orca.h" />
     <ClInclude Include="OrcaApp.h" />
