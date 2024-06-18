@@ -4,6 +4,7 @@
 #include "OrcaApp.h"
 #include "OrcaWindow.h"
 #include "stb_image.h"
+#include "Image.h"
 
 namespace Orca
 {
@@ -129,31 +130,8 @@ namespace Orca
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 
-		unsigned int texture1, texture2;
-		// texture 1
-		// ---------
-		glGenTextures(1, &texture1);
-		glBindTexture(GL_TEXTURE_2D, texture1);
-		// set the texture wrapping parameters
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		// set texture filtering parameters
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		int width, height, nrChannels;
-		unsigned char* data = stbi_load("../Table/Assets/Images/Sun.png", &width, &height, &nrChannels, 0);
-		unsigned char* data = stbi_load("../Orca/Assets/Images/Sun.png", &width, &height, &nrChannels, 0);
-		if (data)
-		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-			glGenerateMipmap(GL_TEXTURE_2D);
-		}
-		else
-		{
-			ORCA_ERROR("Failed to load texture");
-		}
-		stbi_image_free(data);
+		//// TEXTURE ////
+		Orca::Image pic{ "../Orca/Assets/Images/Sun.png" };
 
 		while (true)
 		{
@@ -165,7 +143,7 @@ namespace Orca
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-			glBindTexture(GL_TEXTURE_2D, texture1);
+			pic.Bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			OrcaWindow::GetWindow()->SwapBuffers();
