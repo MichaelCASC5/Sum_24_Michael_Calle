@@ -8,8 +8,9 @@ namespace Orca
 	class ORCA_API Image
 	{
 	public:
-		Image(const std::string& fileName);
-		Image(std::string&& fileName);
+		Image(const std::string& fileName) {};
+		Image(std::string&& fileName) {};
+		void Bind() {};
 	private:
 	};
 }

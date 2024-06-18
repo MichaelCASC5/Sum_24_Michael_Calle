@@ -23,8 +23,12 @@ namespace Orca
 		//WindowImplementation* mImplementation;//distinguish class parameters from function local vars
 		//classic C pointer / raw pointer
 		OrcaWindow();
-		inline static std::shared_ptr<OrcaWindow> mInstance{ nullptr };
+		inline static std::shared_ptr<OrcaWindow> mInstance;
+		//initializes object, inline with static intializes here
+		//without inline, you have to intialize somewhere else
 
-		std::unique_ptr<WindowImplementation> mImplementation{nullptr};
+		//remove blank implementations
+
+		std::unique_ptr<WindowImplementation> mImplementation;
 	};
 }

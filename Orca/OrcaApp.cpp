@@ -52,7 +52,7 @@ namespace Orca
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(0));
 		glEnableVertexAttribArray(0);
 
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2*sizeof(float));
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2*sizeof(float)));
 		glEnableVertexAttribArray(1);
 
 		unsigned EBO{ 0 };
@@ -143,7 +143,7 @@ namespace Orca
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-			pic.Bind();
+			//pic.Bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			OrcaWindow::GetWindow()->SwapBuffers();
