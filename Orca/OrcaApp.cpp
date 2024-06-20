@@ -29,10 +29,10 @@ namespace Orca
 		//// VERTEX DATA ////
 
 		float vertices[] = {
-			-0.5f, -0.5f, 0.0f, 0.0f, // left  
-			 0.5f, -0.5f, 0.0f, 1.0f, // right 
-			 0.0f,  0.5f, 1.0f, 1.0f, // top 
-			 0.5f, -0.5f, 1.0f, 0.0f// bottom-right
+			10, 10, 0.0f, 0.0f, // left  
+			10, 100, 0.0f, 1.0f, // right 
+			100, 100, 1.0f, 1.0f, // top 
+			100, 10, 1.0f, 0.0f// bottom-right
 		};
 
 		unsigned int indices[] = {
@@ -62,7 +62,7 @@ namespace Orca
 
 
 		//// SHADERS //// Class C function ("void main")
-
+/*
 		const char* vertexShaderSource = R"(
 			#version 330 core
 			layout (location = 0) in vec2 aPos;
@@ -89,7 +89,14 @@ namespace Orca
 				FragColor = texture(image, TexCoord);
 			}
 		)";
+		*/
 
+		Orca::Shaders shaders{
+			"../Table/Assets/Shaders/defaultVertex.glsl",
+			"../Table/Assets/Shaders/defaultFragment.glsl"
+		}
+
+		/*
 		// vertex shader
 		unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -128,7 +135,7 @@ namespace Orca
 			ORCA_ERROR("ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog);
 		}
 		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);
+		glDeleteShader(fragmentShader);*/
 
 		//// TEXTURE ////
 		Orca::Image pic{ "../Orca/Assets/Images/Sun.png" };
@@ -140,6 +147,9 @@ namespace Orca
 
 			glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			shaders.Bind();
+			shaders.
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
