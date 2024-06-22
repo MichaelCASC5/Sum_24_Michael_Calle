@@ -143,7 +143,8 @@ namespace Orca
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-			//pic.Bind();
+			pic.Bind();
+			//glBindTexture(GL_TEXTURE_2D, texture1);
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			OrcaWindow::GetWindow()->SwapBuffers();

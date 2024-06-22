@@ -102,12 +102,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ORCA_GLFW;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);ORCA_LIB;ORCA_DEBUG=2;ORCA_MSVC;ORCA_MSVC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ORCA_GLFW;ORCA_OPENGL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);ORCA_LIB;ORCA_DEBUG=2;ORCA_MSVC;ORCA_MSVC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;$(SolutionDir)stbi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca\include;$(SolutionDir)glfw\include;$(SolutionDir)stbi;$(SolutionDir)Orca;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,12 +120,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ORCA_GLFW;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);ORCA_LIB;ORCA_MSVC;ORCA_MSVC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ORCA_GLFW;ORCA_OPENGL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);ORCA_LIB;ORCA_MSVC;ORCA_MSVC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca;$(SolutionDir)glfw\include;$(SolutionDir)stbi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\micha\Documents\Hunter\8.5 - Summer 2024\Game Engines\TheProj\Sum_24_Michael_Calle\glad\include;$(SolutionDir)Orca\include;$(SolutionDir)glfw\include;$(SolutionDir)stbi;$(SolutionDir)Orca;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,15 +135,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="include\ImageImplementation.h" />
     <ClInclude Include="OrcaWindow.h" />
     <ClInclude Include="include\Orca.h" />
     <ClInclude Include="OrcaApp.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ThirdParty\codeGLFW\WindowGLFW.h" />
+    <ClInclude Include="ThirdParty\codeOpenGL\ImageOpenGL.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="WindowImplementation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageOpenGL.cpp" />
     <ClCompile Include="OrcaApp.cpp" />
     <ClCompile Include="OrcaWindow.cpp" />
     <ClCompile Include="pch.cpp">

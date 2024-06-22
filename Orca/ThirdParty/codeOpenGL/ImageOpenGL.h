@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../ImageImplementation.h"
+#include "../../include/ImageImplementation.h"
 
 namespace Orca
 {
@@ -12,13 +12,13 @@ namespace Orca
 		~ImageOpenGL();
 
 		virtual void Bind() override;
-		virtual void GetWidth() override;
-		virtual void GetHeight() override;
+		virtual int GetWidth() override;
+		virtual int GetHeight() override;
 
 	public:
 		unsigned int mTexture{ 0 };
 		int mWidth{ 0 };
-		int hHeight{ 0 };
-		int mNumOfChannnels{ 0 };
+		int mHeight{ 0 };
+		int mNumOfChannels{ 0 };
 	};
 }
