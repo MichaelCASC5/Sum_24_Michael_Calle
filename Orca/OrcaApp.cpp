@@ -3,8 +3,9 @@
 #include "GLFW/glfw3.h"
 #include "OrcaApp.h"
 #include "OrcaWindow.h"
-#include "stb_image.h"
 #include "Image.h"
+#include "Shaders.h"
+#include "stb_image.h"
 
 namespace Orca
 {
@@ -62,7 +63,7 @@ namespace Orca
 
 
 		//// SHADERS //// Class C function ("void main")
-
+		/*
 		const char* vertexShaderSource = R"(
 			#version 330 core
 			layout (location = 0) in vec2 aPos;
@@ -88,8 +89,9 @@ namespace Orca
 			{
 				FragColor = texture(image, TexCoord);
 			}
-		)";
+		)";*/
 
+		/*
 		// vertex shader
 		unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -128,7 +130,12 @@ namespace Orca
 			ORCA_ERROR("ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog);
 		}
 		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);
+		glDeleteShader(fragmentShader);*/
+
+		Orca::Shaders shaders{
+			"../Orca/Assets/Shaders/defaultVertex.glsl",
+			"../Orca/Assets/Shaders/defaultFragment.glsl"
+		};
 
 		//// TEXTURE ////
 		Orca::Image pic{ "../Orca/Assets/Images/Sun.png" };
@@ -141,7 +148,8 @@ namespace Orca
 			glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			glUseProgram(shaderProgram);
+			//glUseProgram(shaderProgram);
+			shaders.Bind();
 			glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 			pic.Bind();
 			//glBindTexture(GL_TEXTURE_2D, texture1);

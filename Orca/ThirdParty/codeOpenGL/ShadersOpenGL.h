@@ -16,6 +16,8 @@ namespace Orca
 		virtual void SetUniform2Ints(std::string&& uniformName, int val1, int val2) override;
 
 	private:
+		unsigned int mShaderProgram{ 0 };
+
 		std::string ReadFile(const std::string& fileName);
 		std::string ReadFile(std::string&& fileName);
 

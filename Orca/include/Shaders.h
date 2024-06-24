@@ -1,7 +1,7 @@
 #pragma once
-#include "pch.h"
-#include "Utilities.h"
-#include "ShadersImplementation.h"
+#include "../pch.h"
+#include "../Utilities.h"
+#include "../ShadersImplementation.h"
 
 namespace Orca
 {
