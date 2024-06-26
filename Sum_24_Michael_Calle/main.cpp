@@ -13,7 +13,7 @@ class BestGame : public Orca::OrcaApp
 	//It tells the C++ compiler this is not the first time this method was declared, but is another version
 	//If you can allow the compiler to do error checking, do it
 	{
-		ORCA_LOG("Running"<<"\n");
+		//ORCA_LOG("Running"<<"\n");
 	}
 };
 
