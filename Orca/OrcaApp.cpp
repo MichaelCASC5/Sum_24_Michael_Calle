@@ -10,6 +10,16 @@
 
 namespace Orca
 {
+	OrcaApp::OrcaApp()
+	{
+		OrcaWindow::Init();
+		OrcaWindow::GetWindow()->CreateWindow(1000, 800, "Test");
+
+		Renderer::Init();
+
+		SetFrameRate(DEFAULT_FRAME_RATE);
+	}
+
 	void OrcaApp::OnUpdate()
 	{
 		
@@ -17,13 +27,8 @@ namespace Orca
 
 	void OrcaApp::Run()
 	{
-		OrcaWindow::Init();
-		OrcaWindow::GetWindow()->CreateWindow(1000, 800, "Test");
 
-		Renderer::Init();
-
-		//// TEXTURE ////
-		Orca::Image pic{ "../Orca/Assets/Images/Sun.png" };
+		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
 		while (true)
 		{
@@ -32,10 +37,18 @@ namespace Orca
 
 			OnUpdate();
 
-			Renderer::Get()->Draw(pic, 100, 200);
+			std::this_thread::sleep_until(mNextFrameTime);
 
 			OrcaWindow::GetWindow()->SwapBuffers();
 			OrcaWindow::GetWindow()->PollEvents();
+
+			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 		}
+	}
+
+	void OrcaApp::SetFrameRate(int newFrameRate)
+	{
+		mFrameRate = newFrameRate;
+		mFrameDuration = std::chrono::milliseconds{ 1000 } / mFrameRate;
 	}
 }
