@@ -24,8 +24,6 @@ namespace Orca
 		inline static std::shared_ptr<Renderer> mInstance;
 		Renderer();
 
-		Shaders mDefaultShaders{
-			"../Table/Assets/Shaders/defaultVertex.glsl",
-			"../Table/Assets/Shaders/defaultFragment.glsl" };
+		//fix
 	};
 }

@@ -20,13 +20,13 @@ namespace Orca
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		mDefaultShaders.LoadSourceCode(
-			"../Table/Assets/Shaders/defaultVertex.glsl",
-			"../Table/Assets/Shaders/defaultFragment.glsl");
+			"../Orca/Assets/Shaders/defaultVertex.glsl",
+			"../Orca/Assets/Shaders/defaultFragment.glsl");
 	}
 
 	RendererOpenGL::~RendererOpenGL()
 	{
-
+		
 	}
 
 	void RendererOpenGL::Draw(Image& pic, int xCoord, int yCoord, Shaders& shaders)
