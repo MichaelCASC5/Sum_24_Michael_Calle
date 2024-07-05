@@ -57,4 +57,20 @@ namespace Orca
 	{
 		mImplementation->PollEvents();
 	}
+
+	void OrcaWindow::SetKeyPressedCallback(const std::function<void(const KeyPressedEvent&)>& newCallback)
+	{
+		mImplementation->SetKeyPressedCallback(newCallback);
+	}
+
+	void OrcaWindow::SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback)
+	{
+		mImplementation->SetKeyReleasedCallback(newCallback);
+	}
+
+	void OrcaWindow::SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback)
+	{
+		mImplementation->SetWindowCloseCallback(newCallback);
+	}
+
 }

@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Events.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="include\ImageImplementation.h" />
     <ClInclude Include="include\Shaders.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="WindowImplementation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Events.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageOpenGL.cpp" />
     <ClCompile Include="OrcaApp.cpp" />

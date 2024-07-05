@@ -29,6 +29,7 @@ namespace Orca
 	{
 
 		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
+		
 
 		while (true)
 		{
@@ -50,5 +51,18 @@ namespace Orca
 	{
 		mFrameRate = newFrameRate;
 		mFrameDuration = std::chrono::milliseconds{ 1000 } / mFrameRate;
+	}
+
+	void OrcaApp::SetKeyPressedCallback(const std::function<void(const KeyPressedEvent&)>& newCallback)
+	{
+		OrcaWindow::GetWindow()->SetKeyPressedCallback(newCallback);
+	}
+	void OrcaApp::SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback)
+	{
+		OrcaWindow::GetWindow()->SetKeyReleasedCallback(newCallback);
+	}
+	void OrcaApp::SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback)
+	{
+		OrcaWindow::GetWindow()->SetWindowCloseCallback(newCallback);
 	}
 }

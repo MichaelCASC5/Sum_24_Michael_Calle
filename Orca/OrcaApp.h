@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "Utilities.h"
+#include "Events.h"
 
 //Base class
 
@@ -20,9 +21,14 @@ namespace Orca
 		void Run();
 		void SetFrameRate(int newFrameRate);
 
+		void SetKeyPressedCallback(const std::function<void(const KeyPressedEvent&)>& newCallback);
+		void SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback);
+		void SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback);
+
 	private:
 		int mFrameRate{ 0 };
+
 		std::chrono::steady_clock::time_point mNextFrameTime;
-		std::chrono::milliseconds mFrameDuration{0};
+		std::chrono::milliseconds mFrameDuration;
 	};
 }

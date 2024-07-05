@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "Utilities.h"
 #include "WindowImplementation.h"
+#include "Events.h"
 
 namespace Orca
 {
@@ -18,6 +19,10 @@ namespace Orca
 		int GetHeight() const;
 		void SwapBuffers();
 		void PollEvents();
+
+		void SetKeyPressedCallback(const std::function<void(const KeyPressedEvent&)>& newCallback);
+		void SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback);
+		void SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback);
 
 	private:
 		//WindowImplementation* mImplementation;//distinguish class parameters from function local vars

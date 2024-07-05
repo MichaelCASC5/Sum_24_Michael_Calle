@@ -16,10 +16,23 @@ namespace Orca
 		virtual void SwapBuffers() override;
 		virtual void PollEvents() override;
 
+		virtual void SetKeyPressedCallback(const std::function<void(const KeyPressedEvent&)>& newCallback) override;
+		virtual void SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback) override;
+		virtual void SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback) override;
+
 		WindowGLFW();
 		~WindowGLFW();
 
 	private:
+		struct Callbacks
+		{
+			std::function<void(const KeyPressedEvent&)> KeyPressedCallback;
+			std::function<void(const KeyReleasedEvent&)> KeyReleasedCallback;
+			std::function<void(const WindowCloseEvent&)> WindowCloseCallback;
+		} mCallbacks;
+
 		GLFWwindow* mWindow{ nullptr };
+
+		void SetDefaultCallbacks();
 	};
 }
