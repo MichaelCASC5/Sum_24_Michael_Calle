@@ -29,7 +29,7 @@ private:
 
 	int x{ 100 };
 	void MyKeyPressedCallback(const Orca::KeyPressedEvent& key) {
-		if (key.GetKey() == 262)
+		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
 			x += 40;
 		}

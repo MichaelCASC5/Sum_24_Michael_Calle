@@ -139,6 +139,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="include\ImageImplementation.h" />
     <ClInclude Include="include\Shaders.h" />
+    <ClInclude Include="OrcaKeys.h" />
     <ClInclude Include="OrcaWindow.h" />
     <ClInclude Include="include\Orca.h" />
     <ClInclude Include="OrcaApp.h" />

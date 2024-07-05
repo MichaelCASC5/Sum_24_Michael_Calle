@@ -26,9 +26,9 @@ namespace Orca
 	private:
 		struct Callbacks
 		{
-			std::function<void(const KeyPressedEvent&)> KeyPressedCallback;
-			std::function<void(const KeyReleasedEvent&)> KeyReleasedCallback;
-			std::function<void(const WindowCloseEvent&)> WindowCloseCallback;
+			std::function<void(const KeyPressedEvent&)> KeyPressedCallback{ [](const KeyPressedEvent&) {} };
+			std::function<void(const KeyReleasedEvent&)> KeyReleasedCallback{ [](const KeyReleasedEvent&) {} };
+			std::function<void(const WindowCloseEvent&)> WindowCloseCallback{ [](const WindowCloseEvent&) {} };
 		} mCallbacks;
 
 		GLFWwindow* mWindow{ nullptr };

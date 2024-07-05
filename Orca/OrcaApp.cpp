@@ -18,6 +18,8 @@ namespace Orca
 		Renderer::Init();
 
 		SetFrameRate(DEFAULT_FRAME_RATE);
+
+		SetWindowCloseCallback([this] (const WindowCloseEvent & event) { DefaultWindowCloseCallback(event); });
 	}
 
 	void OrcaApp::OnUpdate()
@@ -29,9 +31,8 @@ namespace Orca
 	{
 
 		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
-		
 
-		while (true)
+		while (mShouldContinue)
 		{
 			//Game is stuck in this while loop
 			Renderer::Get()->ClearScreen();
@@ -57,12 +58,19 @@ namespace Orca
 	{
 		OrcaWindow::GetWindow()->SetKeyPressedCallback(newCallback);
 	}
+
 	void OrcaApp::SetKeyReleasedCallback(const std::function<void(const KeyReleasedEvent&)>& newCallback)
 	{
 		OrcaWindow::GetWindow()->SetKeyReleasedCallback(newCallback);
 	}
+
 	void OrcaApp::SetWindowCloseCallback(const std::function<void(const WindowCloseEvent&)>& newCallback)
 	{
 		OrcaWindow::GetWindow()->SetWindowCloseCallback(newCallback);
+	}
+
+	void OrcaApp::DefaultWindowCloseCallback(const WindowCloseEvent& event)
+	{
+		mShouldContinue = false;
 	}
 }

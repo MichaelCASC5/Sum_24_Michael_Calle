@@ -30,5 +30,9 @@ namespace Orca
 
 		std::chrono::steady_clock::time_point mNextFrameTime;
 		std::chrono::milliseconds mFrameDuration;
+
+		bool mShouldContinue{ true };
+
+		void DefaultWindowCloseCallback(const WindowCloseEvent& event);
 	};
 }
