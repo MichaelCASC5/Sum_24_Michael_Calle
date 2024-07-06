@@ -35,7 +35,17 @@ namespace Orca
 	
 	bool Unit::OverlapsWih(const Unit& other) const
 	{
-		return false;
+		bool overlapsOnX {
+			(mCoords.x >= other.mCoords.x && mCoords.x <= other.mCoords.x + other.GetWidth()) ||
+			(mCoords.x <= other.mCoords.x && other.mCoords.x <= mCoords.x + GetWidth())
+		};
+
+		bool overlapsOnY {
+			(mCoords.y >= other.mCoords.y && mCoords.y <= other.mCoords.y + other.GetHeight()) ||
+			(mCoords.y <= other.mCoords.y && other.mCoords.y <= mCoords.y + GetHeight())
+		};
+
+		return overlapsOnX && overlapsOnY;
 	}
 
 	void Unit::UpdateXBy(int amount)
@@ -46,5 +56,30 @@ namespace Orca
 	void Unit::UpdateYBy(int amount)
 	{
 		mCoords.y += amount;
+	}
+
+	int Unit::GetWidth() const
+	{
+		return mSprite.GetWidth();
+	}
+
+	int Unit::GetHeight() const
+	{
+		return mSprite.GetHeight();
+	}
+
+	bool Unit::isVisible() const
+	{
+		return mIsVisible;
+	}
+
+	void Unit::SetVisible()
+	{
+		mIsVisible = true;
+	}
+
+	void Unit::SetInvisible()
+	{
+		mIsVisible = false;
 	}
 }

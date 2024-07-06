@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "Utilities.h"
 #include "Image.h"
-#include "Renderer.h"
+//#include "Renderer.h"
 
 namespace Orca
 {
@@ -29,11 +29,20 @@ namespace Orca
 
 		void UpdateXBy(int amount);
 		void UpdateYBy(int amount);
+
+		int GetWidth() const;
+		int GetHeight() const;
 		
+		bool isVisible() const;
+		void SetVisible();
+		void SetInvisible();
+
 		friend class Renderer;
 
 	private:
 		Coordinates mCoords;
 		Image mSprite;
+
+		bool mIsVisible{ true };
 	};
 }

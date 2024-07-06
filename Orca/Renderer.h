@@ -5,6 +5,7 @@
 #include "RendererImplementation.h"
 #include "Image.h"
 #include "Shaders.h"
+#include "Unit.h"
 
 namespace Orca
 {
@@ -16,6 +17,8 @@ namespace Orca
 
 		void Draw(Image& pic, int xCoord, int yCoord, Shaders& shaders);
 		void Draw(Image& pic, int xCoord, int yCoord);
+		void Draw(Unit& unit, Shaders& shaders);
+		//void Draw(Unit& unit);
 		void ClearScreen();
 
 	private:
@@ -23,7 +26,5 @@ namespace Orca
 
 		inline static std::shared_ptr<Renderer> mInstance;
 		Renderer();
-
-		//fix
 	};
 }
