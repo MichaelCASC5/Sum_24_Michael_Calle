@@ -11,6 +11,10 @@ namespace Orca
 	public:
 		Image(const std::string& fileName);
 		Image(std::string&& fileName);
+		Image();
+
+		void LoadImage(const std::string& fileName);
+		void LoadImage(std::string&& fileName);
 
 		void Bind();
 		int GetWidth() const;

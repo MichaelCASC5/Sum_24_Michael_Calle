@@ -14,6 +14,8 @@ set(HEADER_FILES
 	Renderer.h
 	RendererImplementation.h
 	ThirdParty/codeOpenGL/RendererOpenGL.h
+	Events.h
+	OrcaKeys.h
 )
 
 set(SOURCE_FILES
@@ -26,6 +28,7 @@ set(SOURCE_FILES
 	ThirdParty/codeOpenGL/ShadersOpenGL.cpp
 	Renderer.cpp
 	ThirdParty/codeOpenGL/RendererOpenGL.cpp
+	Events.cpp
 )
 
 add_library(Orca SHARED ${HEADER_FILES} ${SOURCE_FILES})
@@ -34,9 +37,9 @@ target_compile_definitions(Orca
 	PUBLIC
 		$<$<CONFIG:Debug>:ORCA_DEBUG=2>
 		$<$<CONFIG:RelWithDebInfo>:ORCA_DEBUG=1>
+		ORCA_GLFW
 	PRIVATE
 		ORCA_LIB
-		ORCA_GLFW
 		ORCA_OPENGL
 )
 

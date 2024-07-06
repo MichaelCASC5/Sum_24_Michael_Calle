@@ -7,9 +7,13 @@ namespace Orca
 	class ImageOpenGL : public ImageImplementation
 	{
 	public:
+		ImageOpenGL();
 		ImageOpenGL(const std::string& fileName);
 		ImageOpenGL(std::string&& fileName);
 		~ImageOpenGL();
+
+		virtual void LoadImage(const std::string& fileName) override;
+		virtual void LoadImage(std::string&& fileName) override;
 
 		virtual void Bind() override;
 		virtual int GetWidth() override;

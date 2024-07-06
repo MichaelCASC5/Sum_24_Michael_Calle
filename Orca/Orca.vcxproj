@@ -151,6 +151,7 @@
     <ClInclude Include="ThirdParty\codeOpenGL\ImageOpenGL.h" />
     <ClInclude Include="ThirdParty\codeOpenGL\RendererOpenGL.h" />
     <ClInclude Include="ThirdParty\codeOpenGL\ShadersOpenGL.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="WindowImplementation.h" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClCompile Include="ThirdParty\codeGLFW\WindowGLFW.cpp" />
     <ClCompile Include="ThirdParty\codeOpenGL\RendererOpenGL.cpp" />
     <ClCompile Include="ThirdParty\codeOpenGL\ShadersOpenGL.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build_glfw\src\glfw.vcxproj">
