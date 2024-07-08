@@ -39,14 +39,14 @@ namespace Orca
 			mImplementation->Draw(unit.mSprite, unit.mCoords.x, unit.mCoords.y, shaders);
 		}
 	}
-	/*
+	
 	void Renderer::Draw(Unit& unit)
 	{
 		if (unit.isVisible())
 		{
 			mImplementation->Draw(unit.mSprite, unit.mCoords.x, unit.mCoords.y);
 		}
-	}*/
+	}
 
 	void Renderer::ClearScreen()
 	{
