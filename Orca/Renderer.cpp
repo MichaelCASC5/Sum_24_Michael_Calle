@@ -39,6 +39,7 @@ namespace Orca
 			mImplementation->Draw(unit.mSprite, unit.mCoords.x, unit.mCoords.y, shaders);
 		}
 	}
+
 	/*
 	void Renderer::Draw(Unit& unit)
 	{
@@ -47,6 +48,16 @@ namespace Orca
 			mImplementation->Draw(unit.mSprite, unit.mCoords.x, unit.mCoords.y);
 		}
 	}*/
+
+	void Renderer::Draw(Map& map, Shaders& shaders)
+	{
+		mImplementation->Draw(map.mBackground, 0, 0, shaders);
+	}
+
+	void Renderer::Draw(Map& map)
+	{
+		mImplementation->Draw(map.mBackground, 0, 0);
+	}
 
 	void Renderer::ClearScreen()
 	{

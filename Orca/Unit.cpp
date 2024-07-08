@@ -68,6 +68,22 @@ namespace Orca
 		return mSprite.GetHeight();
 	}
 
+	Speed Unit::GetSpeed() const
+	{
+		return mSpeed;
+	}
+
+	void Unit::SetSpeed(Speed newSpeed)
+	{
+		mSpeed = newSpeed;
+	}
+
+	void Unit::UpdateSpeed(int xChange, int yChange)
+	{
+		mSpeed.xSpeed += xChange;
+		mSpeed.ySpeed += yChange;
+	}
+
 	bool Unit::isVisible() const
 	{
 		return mIsVisible;
@@ -81,5 +97,13 @@ namespace Orca
 	void Unit::SetInvisible()
 	{
 		mIsVisible = false;
+	}
+
+	Speed::Speed()
+	{
+	}
+
+	Speed::Speed(int xComponent, int yComponent) : xSpeed(xComponent), ySpeed(yComponent))
+	{
 	}
 }

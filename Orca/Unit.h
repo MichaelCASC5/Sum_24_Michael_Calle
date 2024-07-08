@@ -16,6 +16,15 @@ namespace Orca
 		Coordinates(int xVal, int yVal);
 	};
 
+	struct ORCA_API Speed
+	{
+		int xSpeed{ 0 };
+		int ySpeed{ 0 };
+
+		Speed();
+		Speed(int xComponent, int yComponent);
+	};
+
 	class ORCA_API Unit
 	{
 	public:
@@ -32,6 +41,10 @@ namespace Orca
 
 		int GetWidth() const;
 		int GetHeight() const;
+
+		Speed GetSpeed() const;
+		void SetSpeed(Speed newSpeed);
+		void UpdateSpeed(int xChange, int yChange);
 		
 		bool isVisible() const;
 		void SetVisible();
@@ -44,5 +57,6 @@ namespace Orca
 		Image mSprite;
 
 		bool mIsVisible{ true };
+		Speed mSpeed;
 	};
 }
