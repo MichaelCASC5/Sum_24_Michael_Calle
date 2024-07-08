@@ -48,6 +48,16 @@ namespace Orca
 		}
 	}
 
+	void Renderer::Draw(Map& map, Shaders& shaders)
+	{
+		mImplementation->Draw(map.mBackground, 0, 0, shaders);
+	}
+
+	void Renderer::Draw(Map& map)
+	{
+		mImplementation->Draw(map.mBackground, 0, 0);
+	}
+
 	void Renderer::ClearScreen()
 	{
 		mImplementation->ClearScreen();

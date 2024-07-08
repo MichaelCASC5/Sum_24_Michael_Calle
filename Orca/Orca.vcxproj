@@ -139,11 +139,13 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="include\ImageImplementation.h" />
     <ClInclude Include="include\Shaders.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="OrcaKeys.h" />
     <ClInclude Include="OrcaWindow.h" />
     <ClInclude Include="include\Orca.h" />
     <ClInclude Include="OrcaApp.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererImplementation.h" />
     <ClInclude Include="ShadersImplementation.h" />
@@ -157,8 +159,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Events.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageOpenGL.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="OrcaApp.cpp" />
     <ClCompile Include="OrcaWindow.cpp" />
     <ClCompile Include="pch.cpp">
