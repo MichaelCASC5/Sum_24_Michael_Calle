@@ -4,7 +4,6 @@
 #include "Utilities.h"
 #include "Image.h"
 #include "Unit.h"
-#include "Renderer.h"
 
 namespace Orca
 {

@@ -3,7 +3,6 @@
 #include "pch.h"
 #include "Utilities.h"
 #include "Image.h"
-//#include "Renderer.h"
 
 namespace Orca
 {

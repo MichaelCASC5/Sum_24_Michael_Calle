@@ -103,7 +103,7 @@ namespace Orca
 	{
 	}
 
-	Speed::Speed(int xComponent, int yComponent) : xSpeed(xComponent), ySpeed(yComponent))
+	Speed::Speed(int xComponent, int yComponent) : xSpeed(xComponent), ySpeed(yComponent)
 	{
 	}
 }
