@@ -12,7 +12,10 @@ namespace Orca
 		Physics();
 		Physics(int gravity);
 
-		void NextPosition(Unit, Map);
+		void NextPosition(Unit& unit, const Map& map);
+		bool PositionIsPossible(const Unit& unit, const Map& map, Coordinates coords);
+		void ApplyGravity(Unit& unit);
+		bool IsStanding(Unit& unit, const Map& map);
 
 		int GetGravity() const;
 		void SetGravity(int newGravity);
