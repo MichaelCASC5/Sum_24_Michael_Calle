@@ -12,7 +12,7 @@ public:
 			});
 
 		map.LoadBackgroundImage("../Orca/Assets/Images/Background.png");
-		std::vector<std::vector<bool>> util;
+		/*std::vector<std::vector<bool>> util;
 		for (int i{ 0 }; i < 118; i++)
 		{
 			util.push_back(std::vector<bool>(1000, false));
@@ -23,7 +23,7 @@ public:
 		}
 		map.LoadMapPassability(util);
 
-		unit.SetSpeed({ 10, 1 });
+		unit.SetSpeed({ 10, 1 });*/
 	}
 	
 	//This method is virtual and declared in OrcaApp
@@ -53,9 +53,12 @@ private:
 	void MyKeyPressedCallback(const Orca::KeyPressedEvent& key) {
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
-			x += 40;
+			//x += 40;
+			unit.UpdateXBy(40);
 		}
 	}
 };
 
 GAME_ORCA_START(BestGame);
+//physics and map class not necessary
+//uniquenesses text file in game (custom additions)

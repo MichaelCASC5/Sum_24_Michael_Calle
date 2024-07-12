@@ -15,7 +15,7 @@ namespace Orca
 
 	void Physics::NextPosition(Unit& unit, const Map& map)
 	{
-		ORCA_LOG(unit.GetCoordinates().x << " " << unit.GetCoordinates().y);
+		//ORCA_LOG(unit.GetCoordinates().x << " " << unit.GetCoordinates().y);
 		int numOfIterations{ 0 };
 		float xComponent{ (float)unit.GetSpeed().xSpeed };
 		float yComponent{ (float)unit.GetSpeed().ySpeed };

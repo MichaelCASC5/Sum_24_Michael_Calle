@@ -44,7 +44,7 @@ namespace Orca
 	{
 		if (unit.isVisible())
 		{
-			ORCA_LOG("x:" << unit.mCoords.x << " y: " << unit.mCoords.y);
+			//ORCA_LOG("x:" << unit.mCoords.x << " y: " << unit.mCoords.y);
 			mImplementation->Draw(unit.mSprite, unit.mCoords.x, unit.mCoords.y);
 		}
 	}

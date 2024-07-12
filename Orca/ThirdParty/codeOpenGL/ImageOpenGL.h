@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../include/ImageImplementation.h"
+#include "ImageImplementation.h"
 
 namespace Orca
 {
