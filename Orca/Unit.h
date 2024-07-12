@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "Utilities.h"
 #include "Image.h"
+#include "Camera.h"
 
 namespace Orca
 {
@@ -10,9 +11,20 @@ namespace Orca
 	{
 		int x{ 0 };
 		int y{ 0 };
+		int z{ 0 };
 
 		Coordinates();
-		Coordinates(int xVal, int yVal);
+		Coordinates(int xVal, int yVal, int zVal);
+	};
+
+	struct ORCA_API LocalCoordinates
+	{
+		int x{ 0 };
+		int y{ 0 };
+		int z{ 0 };
+
+		LocalCoordinates();
+		LocalCoordinates(int xVal, int yVal, int zVal);
 	};
 
 	struct ORCA_API Speed
@@ -54,8 +66,15 @@ namespace Orca
 
 		friend class Renderer;
 
+		/*
+		* 3D Functions
+		*/
+		void Project(Camera cam);
+
 	private:
 		Coordinates mCoords;
+		LocalCoordinates mLocalCoords;
+
 		Image mSprite;
 
 		bool mIsVisible{ true };

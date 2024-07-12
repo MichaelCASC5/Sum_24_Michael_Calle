@@ -11,50 +11,45 @@ public:
 			MyKeyPressedCallback(key);
 			});
 
-		map.LoadBackgroundImage("../Orca/Assets/Images/Background.png");
-		/*std::vector<std::vector<bool>> util;
-		for (int i{ 0 }; i < 118; i++)
-		{
-			util.push_back(std::vector<bool>(1000, false));
-		}
-		for (int i{ 0 }; i < 682; i++)
-		{
-			util.push_back(std::vector<bool>(1000, true));
-		}
-		map.LoadMapPassability(util);
+		ORCA_LOG("Game Started");
 
-		unit.SetSpeed({ 10, 1 });*/
+		auto unit = std::make_unique<Orca::Unit>( "../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 100, 200, 0 } );
+
+		for (int i = 0; i < 1; i++)
+		{
+			auto asteroid = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates{ 0, 0, 20 });
+			scene.push_back(std::move(asteroid));
+
+			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates{ 50, 0, 200 });
+			scene.push_back(std::move(asteroid1));
+		}
 	}
-	
-	//This method is virtual and declared in OrcaApp
-	//It will be started on each game loop, does everything that needs to be done between frames to create the next frame
-	//Where majority of the work happens
+
 	virtual void OnUpdate() override
-	//Override is similar to const, not mandatory but helpful
-	//It tells the C++ compiler this is not the first time this method was declared, but is another version
-	//If you can allow the compiler to do error checking, do it
 	{
-		physics.NextPosition(unit, map);
-		Orca::Renderer::Get()->Draw(map);
-		Orca::Renderer::Get()->Draw(unit);
-		
-		//ORCA_LOG("Running"<<"\n");
-		//Orca::Renderer::Get()->Draw(pic, x, 200);
-		// x += 1;
+		// Do computations
+		for (int i = 0; i < scene.size(); i++)
+		{
+			scene[i]->Project(cam);
+		}
+
+		// Draw units
+		for (int i = 0; i < scene.size(); i++)
+		{
+			Orca::Renderer::Get()->Draw(*scene[i]);
+		}
 	}
 
 private:
-	Orca::Image pic{ "../Orca/Assets/Images/Sun.png" };
-	Orca::Unit unit{ "../Orca/Assets/Images/Sun.png", {100, 200} };
-	Orca::Map map;
-	Orca::Physics physics;
 
-	int x{ 100 };
+	std::vector<std::unique_ptr<Orca::Unit>> scene;
+	Orca::Camera cam;
+
 	void MyKeyPressedCallback(const Orca::KeyPressedEvent& key) {
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
-			//x += 40;
-			unit.UpdateXBy(40);
+			//scene[0]->UpdateXBy(40);
+			cam.updateXBy(2);
 		}
 	}
 };

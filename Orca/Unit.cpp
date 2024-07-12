@@ -13,12 +13,22 @@ namespace Orca
 		LoadSprite(std::move(fileName));
 	}
 
-	Orca::Coordinates::Coordinates() : x(0), y(0)
+	Orca::Coordinates::Coordinates() : x(0), y(0), z(0)
 	{
 		
 	}
 
-	Coordinates::Coordinates(int xVal, int yVal) : x(xVal), y(yVal)
+	Coordinates::Coordinates(int xVal, int yVal, int zVal) : x(xVal), y(yVal), z(zVal)
+	{
+
+	}
+
+	Orca::LocalCoordinates::LocalCoordinates() : x(0), y(0), z(0)
+	{
+
+	}
+
+	LocalCoordinates::LocalCoordinates(int xVal, int yVal, int zVal) : x(xVal), y(yVal), z(zVal)
 	{
 
 	}
@@ -115,5 +125,26 @@ namespace Orca
 
 	Speed::Speed(int xComponent, int yComponent) : xSpeed(xComponent), ySpeed(yComponent)
 	{
+	}
+
+	/*
+	* 3D Functions
+	*/
+
+	void Unit::Project(Camera cam)
+	{
+
+		double xDist = mCoords.x - cam.getX();
+		double yDist = mCoords.y - cam.getY();
+		double zDist = mCoords.z - cam.getZ();
+
+		double parr = abs(1000.0 / zDist);
+
+		mLocalCoords.x = 500 + parr * xDist;
+		mLocalCoords.y = 400 - parr * yDist;
+
+		ORCA_LOG("\nObject:");
+		ORCA_LOG("Global: " << mCoords.x << ", " << mCoords.y << ", " << mCoords.z);
+		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);
 	}
 }
