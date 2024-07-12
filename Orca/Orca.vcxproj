@@ -137,8 +137,7 @@
   <ItemGroup>
     <ClInclude Include="Events.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="include\ImageImplementation.h" />
-    <ClInclude Include="include\Shaders.h" />
+    <ClInclude Include="ImageImplementation.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="OrcaKeys.h" />
     <ClInclude Include="OrcaWindow.h" />
@@ -148,6 +147,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererImplementation.h" />
+    <ClInclude Include="Shaders.h" />
     <ClInclude Include="ShadersImplementation.h" />
     <ClInclude Include="ThirdParty\codeGLFW\WindowGLFW.h" />
     <ClInclude Include="ThirdParty\codeOpenGL\ImageOpenGL.h" />
@@ -161,7 +161,6 @@
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="ImageOpenGL.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="OrcaApp.cpp" />
     <ClCompile Include="OrcaWindow.cpp" />
@@ -172,6 +171,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="ThirdParty\codeGLFW\WindowGLFW.cpp" />
+    <ClCompile Include="ThirdParty\codeOpenGL\ImageOpenGL.cpp" />
     <ClCompile Include="ThirdParty\codeOpenGL\RendererOpenGL.cpp" />
     <ClCompile Include="ThirdParty\codeOpenGL\ShadersOpenGL.cpp" />
     <ClCompile Include="Unit.cpp" />

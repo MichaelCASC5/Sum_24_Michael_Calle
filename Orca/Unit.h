@@ -27,6 +27,9 @@ namespace Orca
 	class ORCA_API Unit
 	{
 	public:
+		Unit(const std::string& fileName, Coordinates newCoordinates);
+		Unit(std::string&& fileName, Coordinates newCoordinates);
+
 		void SetCoordinates(Coordinates newCoordinates);
 		Coordinates GetCoordinates() const;
 

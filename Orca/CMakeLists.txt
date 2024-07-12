@@ -16,6 +16,9 @@ set(HEADER_FILES
 	ThirdParty/codeOpenGL/RendererOpenGL.h
 	Events.h
 	OrcaKeys.h
+	Unit.h
+	Map.h
+	Physics.h
 )
 
 set(SOURCE_FILES
@@ -29,6 +32,9 @@ set(SOURCE_FILES
 	Renderer.cpp
 	ThirdParty/codeOpenGL/RendererOpenGL.cpp
 	Events.cpp
+	Unit.cpp
+	Map.cpp
+	Physics.cpp
 )
 
 add_library(Orca SHARED ${HEADER_FILES} ${SOURCE_FILES})
@@ -48,9 +54,13 @@ if(MSVC)
 endif()
 
 target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/Orca)
+target_include_directories(Orca PUBLIC ${CMAKE_SOURCE_DIR}/Orca/include)
 target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/glfw/include)
 target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/glad/include)
+target_include_directories(Orca PRIVATE ${CMAKE_SOURCE_DIR}/stbi)
 
 target_link_libraries(Orca glfw glad stbi)
 
 target_precompile_headers(Orca PRIVATE pch.h)
+
+file(COPY Assets DESTINATION ${PROJECT_BINARY_DIR}/Orca)

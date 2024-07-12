@@ -12,7 +12,8 @@ namespace Orca
 	public:
 		void LoadBackgroundImage(const std::string& fileName);
 		void LoadBackgroundImage(std::string&& fileName);
-		void LoadPixelPassability(std::vector<std::vector<bool>> pixelPassability);
+		void LoadMapPassability(std::vector<std::vector<bool>> pixelPassability);
+		void LoadPixelPassability(Coordinates coords, bool isPassable);
 
 		bool GetPixelPassability(Coordinates coords) const;
 

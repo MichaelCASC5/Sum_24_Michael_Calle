@@ -3,6 +3,16 @@
 
 namespace Orca
 {
+	Unit::Unit(const std::string& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
+	{
+		LoadSprite(fileName);
+	}
+
+	Unit::Unit(std::string&& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
+	{
+		LoadSprite(std::move(fileName));
+	}
+
 	Orca::Coordinates::Coordinates() : x(0), y(0)
 	{
 		
