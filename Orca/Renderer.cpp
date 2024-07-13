@@ -29,7 +29,7 @@ namespace Orca
 			"ScreenSize",
 			OrcaWindow::GetWindow()->GetWidth(),
 			OrcaWindow::GetWidth()->GetHeight());*/
-		mImplementation->Draw(pic, xCoord, yCoord, 1);
+		mImplementation->Draw(pic, xCoord, yCoord, 1, 0);
 	}
 
 	void Renderer::Draw(Unit& unit, Shaders& shaders)
@@ -42,10 +42,10 @@ namespace Orca
 	
 	void Renderer::Draw(Unit& unit)
 	{
-		// Switched to local coords
+		// Switched to local coords, added scale and angle
 		if (unit.isVisible())
 		{
-			mImplementation->Draw(unit.mSprite, unit.mLocalCoords.x, unit.mLocalCoords.y, unit.mLocalCoords.z);
+			mImplementation->Draw(unit.mSprite, unit.mLocalCoords.x, unit.mLocalCoords.y, unit.mLocalCoords.z, unit.getAngle());
 		}
 	}
 
@@ -56,7 +56,7 @@ namespace Orca
 
 	void Renderer::Draw(Map& map)
 	{
-		mImplementation->Draw(map.mBackground, 0, 0 ,0);
+		mImplementation->Draw(map.mBackground, 0, 0 ,0, 0);
 	}
 
 	void Renderer::ClearScreen()

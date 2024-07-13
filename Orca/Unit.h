@@ -55,6 +55,7 @@ namespace Orca
 
 		int GetWidth() const;
 		int GetHeight() const;
+		double getAngle() const;
 
 		Speed GetSpeed() const;
 		void SetSpeed(Speed newSpeed);
@@ -83,5 +84,7 @@ namespace Orca
 
 		bool mIsVisible{ true };
 		Speed mSpeed;
+
+		double angle;
 	};
 }

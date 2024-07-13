@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Camera.h"
+#define PI 3.1415926535897932384626433832795
 
 namespace Orca
 {
@@ -90,5 +91,23 @@ namespace Orca
 	double Camera::getRoll()
 	{
 		return rotation[2];
+	}
+
+	void Camera::forward(double n)
+	{
+		position[0] += n * sin(getYaw() * (PI / 180));
+		position[1] += n * sin(getPitch() * (PI / 180));
+		position[2] += n * cos(getYaw() * (PI / 180));
+	}
+
+	void Camera::left(double n)
+	{
+		position[0] += n * cos(getYaw() * (PI / 180));
+		position[2] -= n * sin(getYaw() * (PI / 180));
+	}
+
+	void Camera::Compensation(auto key)
+	{
+
 	}
 }

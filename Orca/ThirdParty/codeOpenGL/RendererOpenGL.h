@@ -12,7 +12,7 @@ namespace Orca
 		~RendererOpenGL();
 
 		virtual void Draw(Image& pic, int xCoord, int yCoord, Shaders& shaders) override;
-		virtual void Draw(Image& pic, int xCoord, int yCoord, double scale) override;
+		virtual void Draw(Image& pic, int xCoord, int yCoord, double scale, double angle) override;
 		virtual void ClearScreen() override;
 
 	private:

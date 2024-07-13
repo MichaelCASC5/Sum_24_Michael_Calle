@@ -31,9 +31,11 @@ public:
 		for (int i = 0; i < scene.size(); i++)
 		{
 			scene[i]->Reset(cam);
-			scene[i]->RotateZ(cam);
 			scene[i]->RotateY(cam);
 			scene[i]->RotateX(cam);
+
+			scene[i]->RotateZ(cam);
+
 			scene[i]->Project(cam);
 		}
 
@@ -54,12 +56,11 @@ private:
 		//Arrow keys
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
-			//scene[0]->UpdateXBy(40);
-			cam.roll(10);
+			cam.yaw(10);
 		}
 		else if(key.GetKey() == ORCA_KEY_LEFT)
 		{
-			cam.roll(-10);
+			cam.yaw(-10);
 		}
 		else if (key.GetKey() == ORCA_KEY_UP)
 		{
@@ -69,23 +70,31 @@ private:
 		{
 			cam.pitch(-10);
 		}
+		else if (key.GetKey() == ORCA_KEY_Z)
+		{
+			cam.roll(10);
+		}
+		else if (key.GetKey() == ORCA_KEY_X)
+		{
+			cam.roll(-10);
+		}
 
 		// WASD
 		if (key.GetKey() == ORCA_KEY_D)
 		{
-			cam.updateXBy(50);
+			cam.left(50);
 		}
 		else if (key.GetKey() == ORCA_KEY_A)
 		{
-			cam.updateXBy(-50);
+			cam.left(-50);
 		}
 		else if (key.GetKey() == ORCA_KEY_W)
 		{
-			cam.updateZBy(50);
+			cam.forward(50);
 		}
 		else if (key.GetKey() == ORCA_KEY_S)
 		{
-			cam.updateZBy(-50);
+			cam.forward(-50);
 		}
 
 		

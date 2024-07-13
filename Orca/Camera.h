@@ -30,6 +30,10 @@ namespace Orca
 		double getPitch();
 		double getRoll();
 
+		void forward(double n);
+		void left(double n);
+
+		void Compensation(auto key);
 	private:
 		std::vector<double> position;
 		std::vector<double> rotation;

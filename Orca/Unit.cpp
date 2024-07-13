@@ -8,11 +8,13 @@ namespace Orca
 	Unit::Unit(const std::string& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
 	{
 		LoadSprite(fileName);
+		angle = 0;
 	}
 
 	Unit::Unit(std::string&& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
 	{
 		LoadSprite(std::move(fileName));
+		angle = 0;
 	}
 
 	Orca::Coordinates::Coordinates() : x(0), y(0), z(0)
@@ -90,6 +92,11 @@ namespace Orca
 		return mSprite.GetHeight();
 	}
 
+	double Unit::getAngle() const
+	{
+		return angle;
+	}
+
 	Speed Unit::GetSpeed() const
 	{
 		return mSpeed;
@@ -143,6 +150,7 @@ namespace Orca
 		cam.reset();
 	}
 
+	// roll
 	void Unit::RotateZ(Camera& cam)
 	{
 		double xDist = mLocalCoords.x - cam.getX();
@@ -163,6 +171,7 @@ namespace Orca
 		mLocalCoords.x = a + b + cam.getX();
 	}
 
+	// yaw 
 	void Unit::RotateY(Camera& cam)
 	{
 		double xDist = mLocalCoords.x - cam.getX();
@@ -183,6 +192,7 @@ namespace Orca
 		mLocalCoords.z = a + b + cam.getZ();
 	}
 
+	// pitch
 	void Unit::RotateX(Camera& cam)
 	{		
 		double xDist = mLocalCoords.x - cam.getX();
@@ -226,8 +236,7 @@ namespace Orca
 		// scale value
 		mLocalCoords.z = 220.0 / zDist;
 
-		/*ORCA_LOG("\nObject:");
-		ORCA_LOG("Global: " << mCoords.x << ", " << mCoords.y << ", " << mCoords.z);
-		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);*/
+		// rotate value
+		angle = 360 - cam.getRoll();
 	}
 }
