@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Unit.h"
 
+#define PI 3.1415926535897932384626433832795
+
 namespace Orca
 {
 	Unit::Unit(const std::string& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
@@ -18,7 +20,7 @@ namespace Orca
 		
 	}
 
-	Coordinates::Coordinates(int xVal, int yVal, int zVal) : x(xVal), y(yVal), z(zVal)
+	Coordinates::Coordinates(double xVal, double yVal, double zVal) : x(xVal), y(yVal), z(zVal)
 	{
 
 	}
@@ -28,7 +30,7 @@ namespace Orca
 
 	}
 
-	LocalCoordinates::LocalCoordinates(int xVal, int yVal, int zVal) : x(xVal), y(yVal), z(zVal)
+	LocalCoordinates::LocalCoordinates(double xVal, double yVal, double zVal) : x(xVal), y(yVal), z(zVal)
 	{
 
 	}
@@ -131,20 +133,54 @@ namespace Orca
 	* 3D Functions
 	*/
 
-	void Unit::Project(Camera cam)
+	void Unit::Reset()
 	{
+		mLocalCoords.x = mCoords.x;
+		mLocalCoords.y = mCoords.y;
+		mLocalCoords.z = mCoords.z;
+	}
 
+	void Unit::RotateZ(Camera cam)
+	{
+		// ORCA_LOG("Rotate Z");
+		
 		double xDist = mCoords.x - cam.getX();
 		double yDist = mCoords.y - cam.getY();
 		double zDist = mCoords.z - cam.getZ();
 
+		double a;
+		double b;
+
+		a = yDist * cos(cam.getPitch() / (180.0 / PI));
+		b = zDist * sin(cam.getPitch() / (180.0 / PI));
+
+		mLocalCoords.y = a - b + cam.getY();
+
+		a = zDist * cos(cam.getPitch() / (180.0 / PI));
+		b = yDist * sin(cam.getPitch() / (180.0 / PI));
+
+		mLocalCoords.z = a + b + cam.getZ();
+	}
+
+	void Unit::Project(Camera cam)
+	{
+
+		double xDist = mLocalCoords.x - cam.getX();
+		double yDist = mLocalCoords.y - cam.getY();
+		double zDist = mLocalCoords.z - cam.getZ();
+
 		double parr = abs(1000.0 / zDist);
 
-		mLocalCoords.x = 500 + parr * xDist;
-		mLocalCoords.y = 400 - parr * yDist;
+		// local coordinates get converted to screen coordinates and a scale value
+		// screen coordinates
+		mLocalCoords.x = 500.0 + parr * xDist;
+		mLocalCoords.y = 400.0 + parr * yDist;
 
-		ORCA_LOG("\nObject:");
+		// scale value
+		mLocalCoords.z = 220.0 / zDist;
+
+		/*ORCA_LOG("\nObject:");
 		ORCA_LOG("Global: " << mCoords.x << ", " << mCoords.y << ", " << mCoords.z);
-		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);
+		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);*/
 	}
 }

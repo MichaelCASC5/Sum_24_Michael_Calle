@@ -45,7 +45,7 @@ namespace Orca
 		// Switched to local coords
 		if (unit.isVisible())
 		{
-			mImplementation->Draw(unit.mSprite, unit.mLocalCoords.x, unit.mLocalCoords.y, 1);
+			mImplementation->Draw(unit.mSprite, unit.mLocalCoords.x, unit.mLocalCoords.y, unit.mLocalCoords.z);
 		}
 	}
 

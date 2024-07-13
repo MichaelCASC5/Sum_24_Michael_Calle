@@ -6,6 +6,7 @@ namespace Orca
 	Orca::Camera::Camera()
 	{
 		position = { 0, 0, 0 };
+		rotation = { 0, 0, 0 };
 	}
 
 	Camera::Camera(double x, double y, double z)
@@ -13,8 +14,29 @@ namespace Orca
 		position = { x, y, z };
 	}
 
+	Camera::Camera(double x, double y, double z, double a, double b, double c)
+	{
+		position = { x, y, z };
+		rotation = { a, b, c };
+	}
+
 	Camera::~Camera()
 	{
+	}
+
+	void Camera::updateXBy(double n)
+	{
+		position[0] += n;
+	}
+
+	void Camera::updateYBy(double n)
+	{
+		position[1] += n;
+	}
+
+	void Camera::updateZBy(double n)
+	{
+		position[2] += n;
 	}
 
 	double Camera::getX()
@@ -32,18 +54,33 @@ namespace Orca
 		return position[2];
 	}
 
-	void Camera::updateXBy(double n)
+	void Camera::yaw(double n)
 	{
-		position[0] += n;
+		rotation[0] += n;
 	}
 
-	void Camera::updateYBy(double n)
+	void Camera::pitch(double n)
 	{
-		position[1] += n;
+		rotation[1] += n;
 	}
 
-	void Camera::updateZBy(double n)
+	void Camera::roll(double n)
 	{
-		position[2] += n;
+		rotation[2] += n;
+	}
+
+	double Camera::getYaw()
+	{
+		return rotation[0];
+	}
+
+	double Camera::getPitch()
+	{
+		return rotation[1];
+	}
+
+	double Camera::getRoll()
+	{
+		return rotation[2];
 	}
 }

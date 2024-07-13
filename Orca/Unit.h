@@ -9,22 +9,22 @@ namespace Orca
 {
 	struct ORCA_API Coordinates
 	{
-		int x{ 0 };
-		int y{ 0 };
-		int z{ 0 };
+		double x{ 0 };
+		double y{ 0 };
+		double z{ 0 };
 
 		Coordinates();
-		Coordinates(int xVal, int yVal, int zVal);
+		Coordinates(double xVal, double yVal, double zVal);
 	};
 
 	struct ORCA_API LocalCoordinates
 	{
-		int x{ 0 };
-		int y{ 0 };
-		int z{ 0 };
+		double x{ 0 };
+		double y{ 0 };
+		double z{ 0 };
 
 		LocalCoordinates();
-		LocalCoordinates(int xVal, int yVal, int zVal);
+		LocalCoordinates(double xVal, double yVal, double zVal);
 	};
 
 	struct ORCA_API Speed
@@ -69,6 +69,8 @@ namespace Orca
 		/*
 		* 3D Functions
 		*/
+		void Reset();
+		void RotateZ(Camera cam);
 		void Project(Camera cam);
 
 	private:
