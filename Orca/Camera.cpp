@@ -65,12 +65,18 @@ namespace Orca
 
 	void Camera::yaw(double n)
 	{
-		rotation[0] += n;
+		// rotation[0] += n;
+
+		rotation[0] += n * cos(getRoll() * (PI / 180));
+		rotation[1] += n * sin(getRoll() * (PI / 180));
 	}
 
 	void Camera::pitch(double n)
 	{
-		rotation[1] += n;
+		// rotation[1] += n;
+
+		rotation[0] -= n * sin(getRoll() * (PI / 180));
+		rotation[1] += n * cos(getRoll() * (PI / 180));
 	}
 
 	void Camera::roll(double n)
