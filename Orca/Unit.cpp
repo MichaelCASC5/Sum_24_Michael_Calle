@@ -226,7 +226,7 @@ namespace Orca
 			SetInvisible();
 		}
 
-		double parr = abs(1000.0 / zDist);
+		double parr = abs(500.0 / zDist);
 
 		// local coordinates get converted to screen coordinates and a scale value
 		// screen coordinates
@@ -234,7 +234,7 @@ namespace Orca
 		mLocalCoords.y = 400.0 + parr * yDist;
 
 		// scale value
-		mLocalCoords.z = 220.0 / zDist;
+		mLocalCoords.z = 100 / zDist;
 
 		// rotate value
 		angle = 360 - cam.getRoll();

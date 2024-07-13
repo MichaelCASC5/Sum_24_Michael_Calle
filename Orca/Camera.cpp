@@ -25,6 +25,13 @@ namespace Orca
 	{
 	}
 
+	void Camera::setPosition(double a, double b, double c)
+	{
+		position[0] = a;
+		position[1] = b;
+		position[2] = c;
+	}
+
 	void Camera::reset()
 	{
 		for (int i = 0; i < 3; i++)
@@ -67,6 +74,12 @@ namespace Orca
 	{
 		// rotation[0] += n;
 
+		// If the camera is looking over its back, invert the yaw direction (between 270 and 90)
+		if (cos(getPitch() * (PI / 180)) < 0)
+		{
+			n = -n;
+		}
+
 		rotation[0] += n * cos(getRoll() * (PI / 180));
 		rotation[1] += n * sin(getRoll() * (PI / 180));
 	}
@@ -101,9 +114,9 @@ namespace Orca
 
 	void Camera::forward(double n)
 	{
-		position[0] += n * sin(getYaw() * (PI / 180));
+		position[0] += n * sin(getYaw() * (PI / 180)) * cos(getPitch() * (PI / 180));
 		position[1] += n * sin(getPitch() * (PI / 180));
-		position[2] += n * cos(getYaw() * (PI / 180));
+		position[2] += n * cos(getYaw() * (PI / 180)) * cos(getPitch() * (PI / 180));
 	}
 
 	void Camera::left(double n)

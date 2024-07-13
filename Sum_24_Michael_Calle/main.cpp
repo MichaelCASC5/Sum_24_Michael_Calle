@@ -14,6 +14,8 @@ public:
 
 		ORCA_LOG("Game Started");
 
+		cam.setPosition(0, 0, -1000);
+
 		auto unit = std::make_unique<Orca::Unit>( "../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 100, 200, 0 } );
 
 		// Mersenne Twister
@@ -21,20 +23,24 @@ public:
 		std::mt19937 gen(rd());
 		std::uniform_real_distribution<double> dis(0, 1.0); // range [0,1)
 
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < 50; i++)
 		{
 
-			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Sun.png", Orca::Coordinates
+			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates
 			{
-				1000 * dis(gen) - 500,
-				1000 * dis(gen) - 500,
-				1000 * dis(gen) - 500
+				5000 * dis(gen) - 2500,
+				5000 * dis(gen) - 2500,
+				5000 * dis(gen) - 2500
 			});
 
-			scene.push_back(std::move(asteroid1));
+			/*auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates
+				{
+					10.0,
+					10.0,
+					10.0 + i * 20.0
+				});*/
 
-			//auto asteroid = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates{ 0, 0, 20 });
-			//scene.push_back(std::move(asteroid));
+			scene.push_back(std::move(asteroid1));
 		}
 	}
 
@@ -46,10 +52,10 @@ public:
 			scene[i]->Reset(cam);
 			scene[i]->RotateY(cam);
 			scene[i]->RotateX(cam);
-
 			scene[i]->RotateZ(cam);
-
 			scene[i]->Project(cam);
+
+			cam.forward(0.05);
 		}
 
 		// Draw units
