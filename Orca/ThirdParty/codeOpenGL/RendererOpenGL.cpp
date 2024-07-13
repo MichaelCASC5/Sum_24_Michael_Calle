@@ -70,12 +70,13 @@ namespace Orca
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
-	void RendererOpenGL::Draw(Image& pic, int xCoord, int yCoord, double scale, double angle)
+	void RendererOpenGL::Draw(Image& pic, int xCoord, int yCoord, double scale)
 	{
 		// Adjusting the width and height of the picture to account for scale
 		int width = pic.GetWidth() * scale;
 		int height = pic.GetHeight() * scale;
 
+		double angle = 0;
 		angle = angle * (PI / 180.0);
 
 		double c = cos(angle);
