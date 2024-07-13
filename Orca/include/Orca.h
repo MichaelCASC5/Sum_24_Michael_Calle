@@ -9,6 +9,4 @@
 #include "../Events.h"
 #include "../OrcaKeys.h"
 #include "../Unit.h"
-#include "../Map.h"
-#include "../Physics.h"
 #include "../Camera.h"

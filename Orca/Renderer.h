@@ -6,7 +6,6 @@
 #include "Image.h"
 #include "Shaders.h"
 #include "Unit.h"
-#include "Map.h"
 
 namespace Orca
 {
@@ -20,9 +19,6 @@ namespace Orca
 		void Draw(Image& pic, int xCoord, int yCoord);
 		void Draw(Unit& unit, Shaders& shaders);
 		void Draw(Unit& unit);
-
-		void Draw(Map& map, Shaders& shaders);
-		void Draw(Map& map);
 
 		void ClearScreen();
 

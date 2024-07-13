@@ -19,6 +19,7 @@ set(HEADER_FILES
 	Unit.h
 	Map.h
 	Physics.h
+	Camera.h
 )
 
 set(SOURCE_FILES
@@ -35,6 +36,7 @@ set(SOURCE_FILES
 	Unit.cpp
 	Map.cpp
 	Physics.cpp
+	Camera.cpp
 )
 
 add_library(Orca SHARED ${HEADER_FILES} ${SOURCE_FILES})

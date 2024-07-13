@@ -14,7 +14,7 @@ public:
 
 		ORCA_LOG("Game Started");
 
-		cam.setPosition(0, 0, -1000);
+		// cam.setPosition(0, 0, -1000);
 
 		auto unit = std::make_unique<Orca::Unit>( "../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 100, 200, 0 } );
 
@@ -29,7 +29,7 @@ public:
 			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates
 			{
 				5000 * dis(gen) - 2500,
-				5000 * dis(gen) - 2500,
+				0,
 				5000 * dis(gen) - 2500
 			});
 
@@ -37,7 +37,7 @@ public:
 				{
 					10.0,
 					10.0,
-					10.0 + i * 20.0
+					10.0 - i * 20.0
 				});*/
 
 			scene.push_back(std::move(asteroid1));
@@ -54,8 +54,6 @@ public:
 			scene[i]->RotateX(cam);
 			scene[i]->RotateZ(cam);
 			scene[i]->Project(cam);
-
-			cam.forward(0.05);
 		}
 
 		// Draw units

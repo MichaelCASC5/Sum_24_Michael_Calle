@@ -72,24 +72,28 @@ namespace Orca
 
 	void Camera::yaw(double n)
 	{
-		// rotation[0] += n;
+		rotation[0] += n;
 
-		// If the camera is looking over its back, invert the yaw direction (between 270 and 90)
-		if (cos(getPitch() * (PI / 180)) < 0)
-		{
-			n = -n;
-		}
+		// Fancy movements
+		
+		//// If the camera is looking over its back, invert the yaw direction (between 270 and 90)
+		//if (cos(getPitch() * (PI / 180)) < 0)
+		//{
+		//	n = -n;
+		//}
 
-		rotation[0] += n * cos(getRoll() * (PI / 180));
-		rotation[1] += n * sin(getRoll() * (PI / 180));
+		//rotation[0] += n * cos(getRoll() * (PI / 180));
+		//rotation[1] += n * sin(getRoll() * (PI / 180));
 	}
 
 	void Camera::pitch(double n)
 	{
-		// rotation[1] += n;
+		rotation[1] += n;
 
-		rotation[0] -= n * sin(getRoll() * (PI / 180));
-		rotation[1] += n * cos(getRoll() * (PI / 180));
+		// Fancy movements
+
+		/*rotation[0] -= n * sin(getRoll() * (PI / 180));
+		rotation[1] += n * cos(getRoll() * (PI / 180));*/
 	}
 
 	void Camera::roll(double n)
@@ -115,7 +119,7 @@ namespace Orca
 	void Camera::forward(double n)
 	{
 		position[0] += n * sin(getYaw() * (PI / 180)) * cos(getPitch() * (PI / 180));
-		position[1] += n * sin(getPitch() * (PI / 180));
+		// position[1] += n * sin(getPitch() * (PI / 180));	// Fancy movement
 		position[2] += n * cos(getYaw() * (PI / 180)) * cos(getPitch() * (PI / 180));
 	}
 
@@ -123,10 +127,5 @@ namespace Orca
 	{
 		position[0] += n * cos(getYaw() * (PI / 180));
 		position[2] -= n * sin(getYaw() * (PI / 180));
-	}
-
-	void Camera::Compensation(auto key)
-	{
-
 	}
 }
