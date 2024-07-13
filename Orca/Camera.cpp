@@ -28,7 +28,6 @@ namespace Orca
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			position[i] = fmod(position[i], 360);
 			rotation[i] = fmod(rotation[i], 360);
 		}
 	}

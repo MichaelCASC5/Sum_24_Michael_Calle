@@ -6,6 +6,7 @@
 #include "GLFW/glfw3.h"
 
 #include "OrcaWindow.h"
+#define PI 3.1415926535897932384626433832795
 
 namespace Orca
 {
@@ -69,13 +70,23 @@ namespace Orca
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
-	void RendererOpenGL::Draw(Image& pic, int xCoord, int yCoord, double scale)
+	void RendererOpenGL::Draw(Image& pic, int xCoord, int yCoord, double scale, double angle)
 	{
+		// Adjusting the width and height of the picture to account for scale
+		int width = pic.GetWidth() * scale;
+		int height = pic.GetHeight() * scale;
+
+		angle = angle * (PI / 180.0);
+
+		double c = cos(angle);
+		double s = sin(angle);
+
+		// Trig to rotate the picture
 		float vertices[] = {
-			xCoord,							 yCoord,								0.0f, 0.0f, // left  
-			xCoord,							 yCoord + pic.GetHeight() * scale,		0.0f, 1.0f, // right 
-			xCoord + pic.GetWidth() * scale, yCoord + pic.GetHeight() * scale,		1.0f, 1.0f, // top 
-			xCoord + pic.GetWidth() * scale, yCoord,								1.0f, 0.0f// bottom-right
+			xCoord,									yCoord,									0.0f, 0.0f, // left  
+			xCoord - (s * height),					yCoord + (c * height),					0.0f, 1.0f, // right 
+			xCoord + (c * width) - (s * height),	yCoord + (s * width) + (c * height),	1.0f, 1.0f, // top 
+			xCoord + (c * width),					yCoord + (s * width),					1.0f, 0.0f// bottom-right
 		};
 
 		unsigned int indices[] = {

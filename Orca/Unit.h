@@ -69,10 +69,11 @@ namespace Orca
 		/*
 		* 3D Functions
 		*/
-		void Reset(Camera cam);
-		void RotateY(Camera cam);
-		void RotateX(Camera cam);
-		void Project(Camera cam);
+		void Reset(Camera& cam);
+		void RotateZ(Camera& cam);
+		void RotateY(Camera& cam);
+		void RotateX(Camera& cam);
+		void Project(Camera& cam);
 
 	private:
 		Coordinates mCoords;

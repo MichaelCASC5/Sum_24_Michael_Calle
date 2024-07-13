@@ -133,27 +133,41 @@ namespace Orca
 	* 3D Functions
 	*/
 
-	void Unit::Reset(Camera cam)
+	void Unit::Reset(Camera& cam)
 	{
 		mLocalCoords.x = mCoords.x;
 		mLocalCoords.y = mCoords.y;
 		mLocalCoords.z = mCoords.z;
 
 		SetVisible();
-		// cam.reset();
+		cam.reset();
 	}
 
-	void Unit::RotateY(Camera cam)
+	void Unit::RotateZ(Camera& cam)
 	{
-		ORCA_LOG("\n\n\nCOORDS:");
-		ORCA_LOG("Camera Stats: Yaw: " << cam.getYaw() << " Pitch: " << cam.getPitch() << " Roll: " << cam.getRoll());
-		ORCA_LOG("Global: " << mCoords.x << ", " << mCoords.y << ", " << mCoords.z);
+		double xDist = mLocalCoords.x - cam.getX();
+		double yDist = mLocalCoords.y - cam.getY();
+		double zDist = mLocalCoords.z - cam.getZ();
 
-		double xDist = mCoords.x - cam.getX();
-		double yDist = mCoords.y - cam.getY();
-		double zDist = mCoords.z - cam.getZ();
+		double a;
+		double b;
 
-		ORCA_LOG("Distances: " << xDist << ", " << yDist << ", " << zDist);
+		a = yDist * cos(cam.getRoll() / (180.0 / PI));
+		b = xDist * sin(cam.getRoll() / (180.0 / PI));
+
+		mLocalCoords.y = a - b + cam.getY();
+
+		a = xDist * cos(cam.getRoll() / (180.0 / PI));
+		b = yDist * sin(cam.getRoll() / (180.0 / PI));
+
+		mLocalCoords.x = a + b + cam.getX();
+	}
+
+	void Unit::RotateY(Camera& cam)
+	{
+		double xDist = mLocalCoords.x - cam.getX();
+		double yDist = mLocalCoords.y - cam.getY();
+		double zDist = mLocalCoords.z - cam.getZ();
 
 		double a;
 		double b;
@@ -161,31 +175,19 @@ namespace Orca
 		a = xDist * cos(cam.getYaw() / (180.0 / PI));
 		b = zDist * sin(cam.getYaw() / (180.0 / PI));
 
-		ORCA_LOG("a1: " << a << " | " << "b1: " << b);
-
 		mLocalCoords.x = a - b + cam.getX();
-
-		ORCA_LOG("Sum: " << mLocalCoords.x);
 
 		a = zDist * cos(cam.getYaw() / (180.0 / PI));
 		b = xDist * sin(cam.getYaw() / (180.0 / PI));
 
-		ORCA_LOG("a2: " << a << " | " << "b2: " << b);
-
 		mLocalCoords.z = a + b + cam.getZ();
-
-		ORCA_LOG("Sum: " << mLocalCoords.z);
-
-		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);
 	}
 
-	void Unit::RotateX(Camera cam)
-	{
-		// ORCA_LOG("Rotate Z");
-		
-		double xDist = mCoords.x - cam.getX();
-		double yDist = mCoords.y - cam.getY();
-		double zDist = mCoords.z - cam.getZ();
+	void Unit::RotateX(Camera& cam)
+	{		
+		double xDist = mLocalCoords.x - cam.getX();
+		double yDist = mLocalCoords.y - cam.getY();
+		double zDist = mLocalCoords.z - cam.getZ();
 
 		double a;
 		double b;
@@ -201,7 +203,7 @@ namespace Orca
 		mLocalCoords.z = a + b + cam.getZ();
 	}
 
-	void Unit::Project(Camera cam)
+	void Unit::Project(Camera& cam)
 	{
 		
 		double xDist = mLocalCoords.x - cam.getX();

@@ -15,9 +15,9 @@ public:
 
 		auto unit = std::make_unique<Orca::Unit>( "../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 100, 200, 0 } );
 
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates{ 50, 0, 200 - i * 50.0 });
+			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 50, 0, 200 - i * 50.0 });
 			scene.push_back(std::move(asteroid1));
 
 			//auto asteroid = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates{ 0, 0, 20 });
@@ -31,6 +31,7 @@ public:
 		for (int i = 0; i < scene.size(); i++)
 		{
 			scene[i]->Reset(cam);
+			scene[i]->RotateZ(cam);
 			scene[i]->RotateY(cam);
 			scene[i]->RotateX(cam);
 			scene[i]->Project(cam);
@@ -54,11 +55,11 @@ private:
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
 			//scene[0]->UpdateXBy(40);
-			cam.yaw(10);
+			cam.roll(10);
 		}
 		else if(key.GetKey() == ORCA_KEY_LEFT)
 		{
-			cam.yaw(-10);
+			cam.roll(-10);
 		}
 		else if (key.GetKey() == ORCA_KEY_UP)
 		{
