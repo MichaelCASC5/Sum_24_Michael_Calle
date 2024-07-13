@@ -24,6 +24,15 @@ namespace Orca
 	{
 	}
 
+	void Camera::reset()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			position[i] = fmod(position[i], 360);
+			rotation[i] = fmod(rotation[i], 360);
+		}
+	}
+
 	void Camera::updateXBy(double n)
 	{
 		position[0] += n;

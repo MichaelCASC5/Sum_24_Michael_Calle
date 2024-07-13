@@ -133,14 +133,53 @@ namespace Orca
 	* 3D Functions
 	*/
 
-	void Unit::Reset()
+	void Unit::Reset(Camera cam)
 	{
 		mLocalCoords.x = mCoords.x;
 		mLocalCoords.y = mCoords.y;
 		mLocalCoords.z = mCoords.z;
+
+		SetVisible();
+		// cam.reset();
 	}
 
-	void Unit::RotateZ(Camera cam)
+	void Unit::RotateY(Camera cam)
+	{
+		ORCA_LOG("\n\n\nCOORDS:");
+		ORCA_LOG("Camera Stats: Yaw: " << cam.getYaw() << " Pitch: " << cam.getPitch() << " Roll: " << cam.getRoll());
+		ORCA_LOG("Global: " << mCoords.x << ", " << mCoords.y << ", " << mCoords.z);
+
+		double xDist = mCoords.x - cam.getX();
+		double yDist = mCoords.y - cam.getY();
+		double zDist = mCoords.z - cam.getZ();
+
+		ORCA_LOG("Distances: " << xDist << ", " << yDist << ", " << zDist);
+
+		double a;
+		double b;
+
+		a = xDist * cos(cam.getYaw() / (180.0 / PI));
+		b = zDist * sin(cam.getYaw() / (180.0 / PI));
+
+		ORCA_LOG("a1: " << a << " | " << "b1: " << b);
+
+		mLocalCoords.x = a - b + cam.getX();
+
+		ORCA_LOG("Sum: " << mLocalCoords.x);
+
+		a = zDist * cos(cam.getYaw() / (180.0 / PI));
+		b = xDist * sin(cam.getYaw() / (180.0 / PI));
+
+		ORCA_LOG("a2: " << a << " | " << "b2: " << b);
+
+		mLocalCoords.z = a + b + cam.getZ();
+
+		ORCA_LOG("Sum: " << mLocalCoords.z);
+
+		ORCA_LOG("Local: " << mLocalCoords.x << ", " << mLocalCoords.y << ", " << mLocalCoords.z);
+	}
+
+	void Unit::RotateX(Camera cam)
 	{
 		// ORCA_LOG("Rotate Z");
 		
@@ -164,10 +203,16 @@ namespace Orca
 
 	void Unit::Project(Camera cam)
 	{
-
+		
 		double xDist = mLocalCoords.x - cam.getX();
 		double yDist = mLocalCoords.y - cam.getY();
 		double zDist = mLocalCoords.z - cam.getZ();
+
+		// Set to invisible if object is behind camera
+		if (zDist < 0)
+		{
+			SetInvisible();
+		}
 
 		double parr = abs(1000.0 / zDist);
 
