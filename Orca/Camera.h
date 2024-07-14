@@ -13,6 +13,7 @@ namespace Orca
 		~Camera();
 
 		void setPosition(double a, double b, double c);
+		void setRotation(double a, double b, double c);
 		void reset();
 
 		void updateXBy(double n);

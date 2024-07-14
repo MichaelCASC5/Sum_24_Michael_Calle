@@ -32,6 +32,13 @@ namespace Orca
 		position[2] = c;
 	}
 
+	void Camera::setRotation(double a, double b, double c)
+	{
+		rotation[0] = a;
+		rotation[1] = b;
+		rotation[2] = c;
+	}
+
 	void Camera::reset()
 	{
 		for (int i = 0; i < 3; i++)
@@ -89,6 +96,15 @@ namespace Orca
 	void Camera::pitch(double n)
 	{
 		rotation[1] += n;
+
+		if (rotation[1] > 90)
+		{
+			rotation[1] = 90;
+		}
+		else if (rotation[1] < -90)
+		{
+			rotation[1] = -90;
+		}
 
 		// Fancy movements
 

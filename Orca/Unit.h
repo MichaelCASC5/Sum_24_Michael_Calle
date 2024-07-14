@@ -60,6 +60,7 @@ namespace Orca
 		Speed GetSpeed() const;
 		void SetSpeed(Speed newSpeed);
 		void UpdateSpeed(int xChange, int yChange);
+		void SetScale(double d);
 		
 		bool isVisible() const;
 		void SetVisible();
@@ -70,11 +71,15 @@ namespace Orca
 		/*
 		* 3D Functions
 		*/
+		void SetAll(Unit& unit);
+
 		void Reset(Camera& cam);
 		void RotateZ(Camera& cam);
 		void RotateY(Camera& cam);
 		void RotateX(Camera& cam);
 		void Project(Camera& cam);
+
+		double DistToCam(Camera& cam);
 
 	private:
 		Coordinates mCoords;
@@ -86,5 +91,6 @@ namespace Orca
 		Speed mSpeed;
 
 		double angle;
+		double scale;
 	};
 }

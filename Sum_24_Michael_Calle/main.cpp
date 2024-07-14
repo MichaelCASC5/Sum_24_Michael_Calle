@@ -1,6 +1,8 @@
 #include "Orca.h"
 #include <iostream>
 #include <random>
+#define PI 3.1415926535897932384626433832795
+
 
 class BestGame : public Orca::OrcaApp
 {
@@ -16,33 +18,79 @@ public:
 			MyKeyReleasedCallback(key);
 				});
 
-		ORCA_LOG("Game Started");
+		cam.setPosition(1682.99, 220.0, -1310.83);
+		cam.setRotation(-20.0, 30.0, 0.0);
 
-		// cam.setPosition(0, 0, -1000);
+		// Adding the sun
+		auto sunglare = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Sunglare.png", Orca::Coordinates
+			{
+				10000,
+				100000,
+				100000
+			});
+		sunglare->SetScale(500.0);
+		scene.push_back(std::move(sunglare));
+
+		// Adding mountains
+		auto rockmountain = std::make_unique<Orca::Unit>("../Orca/Assets/Images/RockMountain.png", Orca::Coordinates
+			{
+				0,
+				0,
+				100000
+			});
+		rockmountain->SetScale(500.0);
+		scene.push_back(std::move(rockmountain));
+		
+		auto grassmountain = std::make_unique<Orca::Unit>("../Orca/Assets/Images/GrassMountain.png", Orca::Coordinates
+			{
+				-60000,
+				0,
+				40000
+			});
+		grassmountain->SetScale(300.0);
+		scene.push_back(std::move(grassmountain));
+
+		auto grassmountain1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/GrassMountain2.png", Orca::Coordinates
+			{
+				-40000,
+				0,
+				50000
+			});
+		grassmountain1->SetScale(300.0);
+		scene.push_back(std::move(grassmountain1));
+
+
 
 		// Mersenne Twister
 		std::random_device rd;
 		std::mt19937 gen(rd());
 		std::uniform_real_distribution<double> dis(0, 1.0); // range [0,1)
 
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < 12; i++)
 		{
-
-			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Tree.png", Orca::Coordinates
-			{
-				5000 * dis(gen) - 2500,
-				0,
-				5000 * dis(gen) - 2500
-			});
-
-			/*auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates
+			double rand = dis(gen);
+			auto circleTrees = std::make_unique<Orca::Unit>("../Orca/Assets/Images/TreeCanopy.png", Orca::Coordinates
 				{
-					10.0,
-					10.0,
-					10.0 - i * 20.0
-				});*/
+					5000 * cos(rand * (180 / PI)),
+					0,
+					5000 * sin(rand * (180 / PI))
+				});
 
-			scene.push_back(std::move(asteroid1));
+			circleTrees->SetScale(16.0);
+			scene.push_back(std::move(circleTrees));
+		}
+
+		for (int i = 0; i < 12; i++)
+		{
+			auto trees = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Tree.png", Orca::Coordinates
+				{
+					5000 * dis(gen) - 2500,
+					0,
+					5000 * dis(gen) - 2500
+				});
+
+			scene.push_back(std::move(trees));
+
 		}
 	}
 
@@ -116,6 +164,9 @@ public:
 			scene[i]->Project(cam);
 		}
 
+		/*
+		* Calculate where horizon is
+		*/
 		int horizon = int(cam.getPitch() * -9.75);
 
 		/*
@@ -157,6 +208,7 @@ private:
 	Orca::Image skyback{ "../Orca/Assets/Images/Skyback.png" };
 	Orca::Image skybackbottom{ "../Orca/Assets/Images/Skybackbottom.png" };
 	Orca::Image sky{ "../Orca/Assets/Images/Sky.png"};
+	Orca::Image Sunglare{ "../Orca/Assets/Images/Sunglare.png" };
 
 	Orca::KeyBuffer keybuffer;
 

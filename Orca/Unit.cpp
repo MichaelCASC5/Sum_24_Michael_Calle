@@ -9,12 +9,14 @@ namespace Orca
 	{
 		LoadSprite(fileName);
 		angle = 0;
+		scale = 1;
 	}
 
 	Unit::Unit(std::string&& fileName, Coordinates newCoordinates) : mCoords(newCoordinates)
 	{
 		LoadSprite(std::move(fileName));
 		angle = 0;
+		scale = 1;
 	}
 
 	Orca::Coordinates::Coordinates() : x(0), y(0), z(0)
@@ -113,6 +115,11 @@ namespace Orca
 		mSpeed.ySpeed += yChange;
 	}
 
+	void Unit::SetScale(double d)
+	{
+		scale = d;
+	}
+
 	bool Unit::isVisible() const
 	{
 		return mIsVisible;
@@ -140,6 +147,17 @@ namespace Orca
 	* 3D Functions
 	*/
 
+	void Unit::SetAll(Unit& unit)
+	{
+		mCoords.x = unit.mCoords.x;
+		mCoords.y = unit.mCoords.y;
+		mCoords.z = unit.mCoords.z;
+
+		mLocalCoords.x = unit.mLocalCoords.x;
+		mLocalCoords.y = unit.mLocalCoords.y;
+		mLocalCoords.z = unit.mLocalCoords.z;
+	}
+
 	void Unit::Reset(Camera& cam)
 	{
 		mLocalCoords.x = mCoords.x;
@@ -153,20 +171,20 @@ namespace Orca
 	// roll
 	void Unit::RotateZ(Camera& cam)
 	{
-		double xDist = mLocalCoords.x - cam.getX();
-		double yDist = mLocalCoords.y - cam.getY();
-		double zDist = mLocalCoords.z - cam.getZ();
+		double xPos = mLocalCoords.x - cam.getX();
+		double yPos = mLocalCoords.y - cam.getY();
+		double zPos = mLocalCoords.z - cam.getZ();
 
 		double a;
 		double b;
 
-		a = yDist * cos(cam.getRoll() / (180.0 / PI));
-		b = xDist * sin(cam.getRoll() / (180.0 / PI));
+		a = yPos * cos(cam.getRoll() / (180.0 / PI));
+		b = xPos * sin(cam.getRoll() / (180.0 / PI));
 
 		mLocalCoords.y = a - b + cam.getY();
 
-		a = xDist * cos(cam.getRoll() / (180.0 / PI));
-		b = yDist * sin(cam.getRoll() / (180.0 / PI));
+		a = xPos * cos(cam.getRoll() / (180.0 / PI));
+		b = yPos * sin(cam.getRoll() / (180.0 / PI));
 
 		mLocalCoords.x = a + b + cam.getX();
 	}
@@ -174,20 +192,20 @@ namespace Orca
 	// yaw 
 	void Unit::RotateY(Camera& cam)
 	{
-		double xDist = mLocalCoords.x - cam.getX();
-		double yDist = mLocalCoords.y - cam.getY();
-		double zDist = mLocalCoords.z - cam.getZ();
+		double xPos = mLocalCoords.x - cam.getX();
+		double yPos = mLocalCoords.y - cam.getY();
+		double zPos = mLocalCoords.z - cam.getZ();
 
 		double a;
 		double b;
 
-		a = xDist * cos(cam.getYaw() / (180.0 / PI));
-		b = zDist * sin(cam.getYaw() / (180.0 / PI));
+		a = xPos * cos(cam.getYaw() / (180.0 / PI));
+		b = zPos * sin(cam.getYaw() / (180.0 / PI));
 
 		mLocalCoords.x = a - b + cam.getX();
 
-		a = zDist * cos(cam.getYaw() / (180.0 / PI));
-		b = xDist * sin(cam.getYaw() / (180.0 / PI));
+		a = zPos * cos(cam.getYaw() / (180.0 / PI));
+		b = xPos * sin(cam.getYaw() / (180.0 / PI));
 
 		mLocalCoords.z = a + b + cam.getZ();
 	}
@@ -195,20 +213,20 @@ namespace Orca
 	// pitch
 	void Unit::RotateX(Camera& cam)
 	{		
-		double xDist = mLocalCoords.x - cam.getX();
-		double yDist = mLocalCoords.y - cam.getY();
-		double zDist = mLocalCoords.z - cam.getZ();
+		double xPos = mLocalCoords.x - cam.getX();
+		double yPos = mLocalCoords.y - cam.getY();
+		double zPos = mLocalCoords.z - cam.getZ();
 
 		double a;
 		double b;
 
-		a = yDist * cos(cam.getPitch() / (180.0 / PI));
-		b = zDist * sin(cam.getPitch() / (180.0 / PI));
+		a = yPos * cos(cam.getPitch() / (180.0 / PI));
+		b = zPos * sin(cam.getPitch() / (180.0 / PI));
 
 		mLocalCoords.y = a - b + cam.getY();
 
-		a = zDist * cos(cam.getPitch() / (180.0 / PI));
-		b = yDist * sin(cam.getPitch() / (180.0 / PI));
+		a = zPos * cos(cam.getPitch() / (180.0 / PI));
+		b = yPos * sin(cam.getPitch() / (180.0 / PI));
 
 		mLocalCoords.z = a + b + cam.getZ();
 	}
@@ -216,27 +234,36 @@ namespace Orca
 	void Unit::Project(Camera& cam)
 	{
 		
-		double xDist = mLocalCoords.x - cam.getX();
-		double yDist = mLocalCoords.y - cam.getY();
-		double zDist = mLocalCoords.z - cam.getZ();
+		double xPos = mLocalCoords.x - cam.getX();
+		double yPos = mLocalCoords.y - cam.getY();
+		double zPos = mLocalCoords.z - cam.getZ();
 
 		// Set to invisible if object is behind camera
-		if (zDist < 0)
+		if (zPos < 0)
 		{
 			SetInvisible();
 		}
 
-		double parr = abs(500.0 / zDist);
+		double parr = abs(500.0 / zPos);
 
 		// local coordinates get converted to screen coordinates and a scale value
 		// screen coordinates
-		mLocalCoords.x = 500.0 + parr * xDist;
-		mLocalCoords.y = 400.0 + parr * yDist;
+		mLocalCoords.x = 500.0 + parr * xPos;
+		mLocalCoords.y = 400.0 + parr * yPos;
 
 		// scale value
-		mLocalCoords.z = 100 / zDist;
+		mLocalCoords.z = (100 / zPos) * scale;
 
 		// rotate value
 		angle = 360 - cam.getRoll();
+	}
+
+	double Unit::DistToCam(Camera& cam)
+	{
+		double xDist = mCoords.x - cam.getX();
+		double yDist = mCoords.y - cam.getY();
+		double zDist = mCoords.z - cam.getZ();
+
+		return sqrt(pow(xDist, 2) + pow(yDist, 2) + pow(zDist, 2));
 	}
 }
