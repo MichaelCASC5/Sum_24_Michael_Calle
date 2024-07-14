@@ -12,21 +12,23 @@ public:
 			MyKeyPressedCallback(key);
 			});
 
+		SetKeyReleasedCallback([this](const Orca::KeyReleasedEvent& key) {
+			MyKeyReleasedCallback(key);
+				});
+
 		ORCA_LOG("Game Started");
 
 		// cam.setPosition(0, 0, -1000);
-
-		auto unit = std::make_unique<Orca::Unit>( "../Orca/Assets/Images/Sun.png", Orca::Coordinates{ 100, 200, 0 } );
 
 		// Mersenne Twister
 		std::random_device rd;
 		std::mt19937 gen(rd());
 		std::uniform_real_distribution<double> dis(0, 1.0); // range [0,1)
 
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 25; i++)
 		{
 
-			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Asteroid.png", Orca::Coordinates
+			auto asteroid1 = std::make_unique<Orca::Unit>("../Orca/Assets/Images/Tree.png", Orca::Coordinates
 			{
 				5000 * dis(gen) - 2500,
 				0,
@@ -56,7 +58,33 @@ public:
 			scene[i]->Project(cam);
 		}
 
-		// Draw units
+		int horizon = int(cam.getPitch() * -9.75);
+
+		/*
+		* DRAWING THE SCREEN
+		*/
+
+		/*
+		* Drawing the sky
+		*/
+		Orca::Renderer::Get()->Draw(skyback, 0, 0);
+		
+		//Locking bottom to camera if looking down
+		if (horizon - 400 > 0)
+		{
+			Orca::Renderer::Get()->Draw(skybackbottom, 0, 0);
+		}
+		else
+		{
+			Orca::Renderer::Get()->Draw(skybackbottom, 0, horizon - 400);
+		}
+		
+		Orca::Renderer::Get()->Draw(sky, 0, horizon + 200);
+
+		
+		/*
+		* Drawing the scene
+		*/
 		for (int i = 0; i < scene.size(); i++)
 		{
 			Orca::Renderer::Get()->Draw(*scene[i]);
@@ -67,6 +95,10 @@ private:
 
 	std::vector<std::unique_ptr<Orca::Unit>> scene;
 	Orca::Camera cam;
+
+	Orca::Image skyback{ "../Orca/Assets/Images/Skyback.png" };
+	Orca::Image skybackbottom{ "../Orca/Assets/Images/Skybackbottom.png" };
+	Orca::Image sky{ "../Orca/Assets/Images/Sky.png"};
 
 	void MyKeyPressedCallback(const Orca::KeyPressedEvent& key) {
 		
@@ -122,6 +154,13 @@ private:
 		else if (key.GetKey() == ORCA_KEY_LEFT_CONTROL)
 		{
 			cam.updateYBy(-50);
+		}
+	}
+
+	void MyKeyReleasedCallback(const Orca::KeyReleasedEvent& key) {
+		if (key.GetKey() == ORCA_KEY_RIGHT)
+		{
+			ORCA_LOG("RELEASED");
 		}
 	}
 };

@@ -17,8 +17,6 @@ set(HEADER_FILES
 	Events.h
 	OrcaKeys.h
 	Unit.h
-	Map.h
-	Physics.h
 	Camera.h
 )
 
@@ -34,8 +32,6 @@ set(SOURCE_FILES
 	ThirdParty/codeOpenGL/RendererOpenGL.cpp
 	Events.cpp
 	Unit.cpp
-	Map.cpp
-	Physics.cpp
 	Camera.cpp
 )
 

@@ -17,7 +17,7 @@ namespace Orca
 
     }
 
-    int KeyReleasedEvent::GetKey() const
+    int Orca::KeyReleasedEvent::GetKey() const
     {
         return mKeyCode;
     }
