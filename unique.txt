@@ -1,0 +1,11 @@
+Unique Features:
+	My program uses 3D math to display the sprites with a 3D effect.
+	I also added a Camera class to account for 3D movement and position.
+	I also added a KeyBuffer class to allow for smoother and continuous input.
+
+Rules:
+	There are no rules other than looking around. Here are the controls:
+
+	WASD: Lateral translation.
+	ARROW KEYS: Camera rotation.
+	SPACE AND CTRL: Vertical translation.
