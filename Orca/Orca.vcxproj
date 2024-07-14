@@ -139,6 +139,7 @@
     <ClInclude Include="Events.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageImplementation.h" />
+    <ClInclude Include="KeyBuffer.h" />
     <ClInclude Include="OrcaKeys.h" />
     <ClInclude Include="OrcaWindow.h" />
     <ClInclude Include="include\Orca.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="KeyBuffer.cpp" />
     <ClCompile Include="OrcaApp.cpp" />
     <ClCompile Include="OrcaWindow.cpp" />
     <ClCompile Include="pch.cpp">

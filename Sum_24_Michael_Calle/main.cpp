@@ -48,7 +48,65 @@ public:
 
 	virtual void OnUpdate() override
 	{
-		// Do computations
+		/*
+		* DO COMPUTATIONS
+		*/
+		/*
+		* Camera movement
+		*/
+
+		double translationSpeed = 10;
+		double rotationSpeed = 10;
+
+		//Arrow keys
+		if (keybuffer.getRightArrow())
+		{
+			cam.yaw(rotationSpeed);
+		}
+		if (keybuffer.getLeftArrow())
+		{
+			cam.yaw(-rotationSpeed);
+		}
+		if (keybuffer.getUpArrow())
+		{
+			cam.pitch(rotationSpeed);
+		}
+		if (keybuffer.getDownArrow())
+		{
+			cam.pitch(-rotationSpeed);
+		}
+
+		// WASD
+		if (keybuffer.getD())
+		{
+			cam.left(translationSpeed);
+		}
+		if (keybuffer.getA())
+		{
+			cam.left(-translationSpeed);
+		}
+		if (keybuffer.getW())
+		{
+			cam.forward(translationSpeed);
+		}
+		if (keybuffer.getS())
+		{
+			cam.forward(-translationSpeed);
+		}
+
+
+		if (keybuffer.getSpace())
+		{
+			cam.updateYBy(translationSpeed);
+		}
+		if (keybuffer.getCtrl())
+		{
+			cam.updateYBy(-translationSpeed);
+		}
+
+		/*
+		* Do scene computations
+		*/
 		for (int i = 0; i < scene.size(); i++)
 		{
 			scene[i]->Reset(cam);
@@ -100,67 +158,102 @@ private:
 	Orca::Image skybackbottom{ "../Orca/Assets/Images/Skybackbottom.png" };
 	Orca::Image sky{ "../Orca/Assets/Images/Sky.png"};
 
+	Orca::KeyBuffer keybuffer;
+
 	void MyKeyPressedCallback(const Orca::KeyPressedEvent& key) {
 		
 		//Arrow keys
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
-			cam.yaw(10);
+			keybuffer.setRightArrow(true);
 		}
-		else if(key.GetKey() == ORCA_KEY_LEFT)
+		if(key.GetKey() == ORCA_KEY_LEFT)
 		{
-			cam.yaw(-10);
+			keybuffer.setLeftArrow(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_UP)
+		if (key.GetKey() == ORCA_KEY_UP)
 		{
-			cam.pitch(10);
+			keybuffer.setUpArrow(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_DOWN)
+		if (key.GetKey() == ORCA_KEY_DOWN)
 		{
-			cam.pitch(-10);
-		}
-		else if (key.GetKey() == ORCA_KEY_Z)
-		{
-			cam.roll(10);
-		}
-		else if (key.GetKey() == ORCA_KEY_X)
-		{
-			cam.roll(-10);
+			keybuffer.setDownArrow(true);
 		}
 
 		// WASD
 		if (key.GetKey() == ORCA_KEY_D)
 		{
-			cam.left(50);
+			keybuffer.setD(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_A)
+		if (key.GetKey() == ORCA_KEY_A)
 		{
-			cam.left(-50);
+			keybuffer.setA(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_W)
+		if (key.GetKey() == ORCA_KEY_W)
 		{
-			cam.forward(50);
+			keybuffer.setW(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_S)
+		if (key.GetKey() == ORCA_KEY_S)
 		{
-			cam.forward(-50);
+			keybuffer.setS(true);
 		}
 
 		
-		else if (key.GetKey() == ORCA_KEY_SPACE)
+		if (key.GetKey() == ORCA_KEY_SPACE)
 		{
-			cam.updateYBy(50);
+			keybuffer.setSpace(true);
 		}
-		else if (key.GetKey() == ORCA_KEY_LEFT_CONTROL)
+		if (key.GetKey() == ORCA_KEY_LEFT_CONTROL)
 		{
-			cam.updateYBy(-50);
+			keybuffer.setCtrl(true);
 		}
 	}
 
 	void MyKeyReleasedCallback(const Orca::KeyReleasedEvent& key) {
+		//Arrow keys
 		if (key.GetKey() == ORCA_KEY_RIGHT)
 		{
-			ORCA_LOG("RELEASED");
+			keybuffer.setRightArrow(false);
+		}
+		if (key.GetKey() == ORCA_KEY_LEFT)
+		{
+			keybuffer.setLeftArrow(false);
+		}
+		if (key.GetKey() == ORCA_KEY_UP)
+		{
+			keybuffer.setUpArrow(false);
+		}
+		if (key.GetKey() == ORCA_KEY_DOWN)
+		{
+			keybuffer.setDownArrow(false);
+		}
+
+		// WASD
+		if (key.GetKey() == ORCA_KEY_D)
+		{
+			keybuffer.setD(false);
+		}
+		if (key.GetKey() == ORCA_KEY_A)
+		{
+			keybuffer.setA(false);
+		}
+		if (key.GetKey() == ORCA_KEY_W)
+		{
+			keybuffer.setW(false);
+		}
+		if (key.GetKey() == ORCA_KEY_S)
+		{
+			keybuffer.setS(false);
+		}
+
+
+		if (key.GetKey() == ORCA_KEY_SPACE)
+		{
+			keybuffer.setSpace(false);
+		}
+		if (key.GetKey() == ORCA_KEY_LEFT_CONTROL)
+		{
+			keybuffer.setCtrl(false);
 		}
 	}
 };

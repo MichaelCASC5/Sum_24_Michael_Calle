@@ -18,6 +18,7 @@ set(HEADER_FILES
 	OrcaKeys.h
 	Unit.h
 	Camera.h
+	KeyBuffer.h
 )
 
 set(SOURCE_FILES
@@ -33,6 +34,7 @@ set(SOURCE_FILES
 	Events.cpp
 	Unit.cpp
 	Camera.cpp
+	KeyBuffer.cpp
 )
 
 add_library(Orca SHARED ${HEADER_FILES} ${SOURCE_FILES})
